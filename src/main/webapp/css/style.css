@@ -40,3 +40,30 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     padding: 10px;
 }
+.card-container {
+    padding-top: 10px;
+}
+.card-container .d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.card-container .card {
+    margin: 6px;
+}
+.card-container .card-link {
+    margin-left: 10px;
+}
+
+.img-profile {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 100px;
+    max-width: 100%;
+
+}
+.logo {
+    font-family: 'Monoton', cursive;
+    font-size: 30px;
+    padding: 0px;
+}

@@ -65,7 +65,7 @@
                 <a href="/login" class="nav-link text-white">Log-in</a>
             </li>
             <li class="nav-item">
-                <a href="/register" class="nav-link text-white">Register</a>
+                <a href="/logout" class="nav-link text-white">Log-out</a>
             </li>
         </ul>
     </div>

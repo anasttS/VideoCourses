@@ -1,6 +1,7 @@
 package pages.register;
 
-import DAO.dao;
+import BL.UserService;
+import DAO.UserDAO;
 import models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -14,9 +15,10 @@ import java.time.LocalDate;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+    UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        dao.run();
         RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/register.jsp");
         dispatcher.forward(req, resp);
     }
@@ -25,17 +27,11 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String username = req.getParameter("username");
-        String password = req.getParameter("password");
+        int password = req.getParameter("password").hashCode();
         LocalDate birthDate = LocalDate.parse(req.getParameter("birthDate"));
         String interests = req.getParameter("interests");
 
-        if (req.getParameter("register") != null) {
-            if (dao.isContained(email)) {
-                req.getRequestDispatcher("/jsp/register2.jsp").forward(req, resp);
-            } else {
-                dao.save(new User(email, username, password, birthDate, interests));
-                resp.sendRedirect("/login");
-            }
-        }
+        userService.register(email, password, username, birthDate, interests, req, resp);
+
     }
 }

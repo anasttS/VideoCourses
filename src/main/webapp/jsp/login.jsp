@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%--<%@ taglib prefix="cookie" uri="/WEB-INF/tags/MyTags.tld"%>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,22 +21,8 @@
     <title>Login</title>
 </head>
 <body>
-<%
-    Cookie[] cookies=request.getCookies();
-    String email = "", passwordc = "";
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("cookusername")) {
-                email = cookie.getValue();
-            }
-            if(cookie.getName().equals("cookpass")){
-                passwordc = cookie.getValue();
-            }
-        }
-    }
-%>
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white" href="#">Navbar</a>
+    <a class="navbar-brand text-white" href="/main">Navbar</a>
 </nav>
 <div class="container-fluid">
     <br>
@@ -50,7 +38,7 @@
             <form method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<%=email%>">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>

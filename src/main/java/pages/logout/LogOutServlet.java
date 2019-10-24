@@ -1,5 +1,7 @@
 package pages.logout;
 
+import UILogic.UICookieLogic;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +10,16 @@ import java.io.IOException;
 
 @WebServlet("/logout")
 public class LogOutServlet extends HttpServlet {
+    UICookieLogic logic = new UICookieLogic();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie cLogin = new Cookie("cookuser", null);
-        Cookie cPassword = new Cookie("cookpass", null);
-        Cookie cRemember = new Cookie("cookrem", null);
-        cLogin.setMaxAge(0);
-        cPassword.setMaxAge(0);
-        cRemember.setMaxAge(0);
-        resp.addCookie(cLogin);
-        resp.addCookie(cPassword);
-        resp.addCookie(cRemember);
-        HttpSession session = req.getSession();
-        session.invalidate();
-        resp.sendRedirect("/main");
+        logic.deleteCookie(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/logout.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

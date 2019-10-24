@@ -1,4 +1,12 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: smysh
+  Date: 20.10.2019
+  Time: 14:36
+  To change this template use File | Settings | File Templates.
+--%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,12 +24,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <title>Login</title>
+    <title>Channel</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white" href="/main">Navbar</a>
+    <a class="navbar-brand text-white" href="/main2">Navbar</a>
 </nav>
 <div class="container-fluid">
     <br>
@@ -29,33 +37,22 @@
     <diw class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
-            <span><h1>Login</h1></span>
-            <span>And improve yourself</span>
+            <span><h1>Create channel</h1></span>
             <br>
             <br>
             <br>
             <form method="post">
                 <div class="form-group">
-                    <p> One more time </p>
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<%=email%>">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" name="name">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" name="createChannel">Submit</button>
             </form>
         </div>
         <div class="col"></div>
     </diw>
 </div>
 <br>
-
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright &copy; Video Courses</small>
