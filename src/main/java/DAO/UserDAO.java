@@ -55,9 +55,10 @@ public class UserDAO {
     }
 
     public int findIDofUser(String email) {
-        int id = 0;
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email = " + email);
+            int id = 0;
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email = ?");
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 id = resultSet.getInt("id");

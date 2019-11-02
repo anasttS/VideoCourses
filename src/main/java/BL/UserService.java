@@ -16,14 +16,34 @@ public class UserService {
     UserDAO dao = new UserDAO();
     UICookieLogic logic = new UICookieLogic();
 
+    public int getIdByEmail(String email) {
+        try {
+            int id = dao.findIDofUser(email);
+            return id;
+        } catch (NullPointerException e) {
+            System.out.println("Exception");
+        }
+        return 0;
+    }
+
     public String getUsernameByEmail(String email) {
-        User user = dao.getUserByEmail(email);
-        return user.getUsername();
+        try {
+            User user = dao.getUserByEmail(email);
+            return user.getUsername();
+        } catch (NullPointerException e) {
+            System.out.println("Exception");
+        }
+        return null;
     }
 
     public LocalDate getbirthDateByEmail(String email) {
-        User user = dao.getUserByEmail(email);
-        return user.getBirthDate();
+        try {
+            User user = dao.getUserByEmail(email);
+            return user.getBirthDate();
+        } catch (NullPointerException e) {
+            System.out.println("Exception");
+        }
+        return null;
     }
 
     public void login(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
@@ -63,7 +83,7 @@ public class UserService {
 
     public void edit(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            if (req.getParameter("save") != null){
+            if (req.getParameter("save") != null) {
                 dao.updateData(req.getParameter("username"), LocalDate.parse(req.getParameter("birthDate")), (String) req.getSession().getAttribute("current_user"));
                 resp.sendRedirect("/profile");
             }
@@ -73,10 +93,10 @@ public class UserService {
         }
     }
 
-    public  void delete(HttpServletRequest req, HttpServletResponse resp){
-        if (req.getParameter("delete") != null){
+    public void delete(HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getParameter("delete") != null) {
             String user = (String) req.getSession().getAttribute("current_user");
-            int id = dao.findIDofUser(user);
+            int id = getIdByEmail(user);
             dao.delete(id);
             logic.deleteCookie(req, resp);
             try {

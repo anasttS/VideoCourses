@@ -17,10 +17,10 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("auth", req.getSession().getAttribute("current_user"));
         req.setAttribute("username", userService.getUsernameByEmail((String) req.getSession().getAttribute("current_user")));
         req.setAttribute("email", (String) req.getSession().getAttribute("current_user"));
         req.setAttribute("birthDate", userService.getbirthDateByEmail((String) req.getSession().getAttribute("current_user")) + "");
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/profile.jsp");
         dispatcher.forward(req, resp);
     }

@@ -82,4 +82,20 @@ public class VideoDAO {
             throw new IllegalArgumentException();
         }
     }
+
+    public String getVideonameByID(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                return name;
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
 }

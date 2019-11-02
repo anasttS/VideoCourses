@@ -1,13 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<jsp:useBean id="username" scope="request" class="models.User">--%>
+    <%--<jsp:setProperty name="username" property="*"/>--%>
+<%--</jsp:useBean>--%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Lectio</title>
-    <link href="css/bootstrap.css" rel="stylesheet" >
-    <link href="css/bootstrap-grid.css" rel="stylesheet" >
-    <link href="css/bootstrap-reboot.css" rel="stylesheet" >
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-grid.css" rel="stylesheet">
+    <link href="css/bootstrap-reboot.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -20,9 +23,15 @@
     <link rel="stylesheet" href="css/Projects-Horizontal.css">
     <link rel="stylesheet" href="css/Simple-Slider.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Atomic+Age|Monoton|Raleway:900&display=swap" rel="stylesheet">
 
@@ -30,7 +39,7 @@
 
 <body background="assets/img/bg1.jpg">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="/main">Lectio</a>
+    <a class="navbar-brand logo" href="<c:url value="/main"/>">Lectio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -59,22 +68,22 @@
                 </div>
             </li>
         </ul>
-        <% session = request.getSession();
-            if ( session != null) { %>
-        <ul class="navbar-nav ml-auto">
+
+        <c:if test="${auth != null}">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="profile" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    ${username}
+                        ${username}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                     aria-labelledby="profile">
+                     aria-labelledby="main">
                     <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
                     <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
                     <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
                 </div>
             </li>
-            <% } else { %>
+        </c:if>
+        <c:if test="${auth == null}">
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item">
                     <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
@@ -83,8 +92,7 @@
                     <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
                 </li>
             </ul>
-            <% } %>
-        </ul>
+        </c:if>
     </div>
 </nav>
 <!-- Start: Simple Slider -->
@@ -123,7 +131,8 @@
         <!-- Start: Intro -->
         <div class="intro">
             <h2 class="text-center">Why our project is good</h2>
-            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat,
+                pellentesque ut laoreet vitae. </p>
         </div>
         <!-- End: Intro -->
         <hr>
@@ -131,15 +140,18 @@
         <div class="row features">
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-group icon"></i>
                 <h3 class="name">Good users</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
             </div>
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
                 <h3 class="name">Always available</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
             </div>
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-gift icon"></i>
                 <h3 class="name">Free</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
             </div>
         </div>
         <!-- End: Features -->
@@ -159,37 +171,45 @@
         <div class="row projects">
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a>
+                    </div>
                     <div class="col">
                         <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                            Praesent aliquam in tellus eu gravida.</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid"
+                                                                     src="assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                            Praesent aliquam in tellus eu gravida.</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/loft.jpg"></a>
+                    </div>
                     <div class="col">
                         <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                            Praesent aliquam in tellus eu gravida.</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/minibus.jpeg"></a></div>
+                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid"
+                                                                     src="assets/img/minibus.jpeg"></a></div>
                     <div class="col">
                         <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
+                            Praesent aliquam in tellus eu gravida.</p>
                     </div>
                 </div>
             </div>
@@ -216,11 +236,15 @@
                 <!-- Start: Footer Text -->
                 <div class="col-md-6 item text">
                     <h3>Lectio</h3>
-                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula
+                        rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel
+                        in justo.</p>
                 </div>
                 <!-- End: Footer Text -->
                 <!-- Start: Social Icons -->
-                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a></div>
                 <!-- End: Social Icons -->
             </div>
             <!-- Start: Copyright -->
@@ -231,7 +255,8 @@
 </div>
 <!-- End: Footer Dark -->
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/bootstrap.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 <script src="assets/js/Simple-Slider.js"></script>
 </body>

@@ -12,21 +12,23 @@ import java.io.IOException;
 public class VideoService {
     UserDAO userDAO = new UserDAO();
     NoteDAO noteDAO = new NoteDAO();
+    UserService service = new UserService();
 
-    public void saveNote(HttpServletRequest req, HttpServletResponse resp){
+
+    public void saveNote(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
-        if (req.getParameter("save") != null) {
-            String note = req.getParameter("note");
-            int id_video = 3; //Integer.parseInt(req.getParameter("id"));
-            String user = (String) session.getAttribute("current_user");
-            int id_user =  userDAO.findIDofUser(user);
-            noteDAO.saveNote(new Note(note, id_user, id_video));
-            try {
+        try {
+            if (req.getParameter("save") != null) {
+                String note = req.getParameter("noteText");
+                int id_video = 1;
+                int id_user = service.getIdByEmail((String) session.getAttribute("current_user"));
+                noteDAO.saveNoteBD(new Note(note, id_user, id_video));
                 resp.sendRedirect("/video");
-            } catch (IOException e) {
-                System.out.println();
-                throw new IllegalArgumentException();
             }
+        } catch (IOException e) {
+            System.out.println("Exception during saveNote");
+            throw new IllegalArgumentException();
         }
     }
 }
+

@@ -54,85 +54,86 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-
-            <% session = request.getSession();
-                if ( session != null) { %>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="profile" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    ${username}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                     aria-labelledby="profile">
-                    <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
-                    <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
-                    <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
-                </div>
-            </li>
-            <% } else { %>
-            <ul class="navbar-nav ml-auto nav-flex-icons">--%>
-                <li class="nav-item">
-                    <a href="/login" class="nav-link text-white">Login</a>
+            <c:if test="${auth != null}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                            ${username}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="main">
+                        <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
+                        <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
+                        <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="/register" class="nav-link text-white">Register</a>
-                </li>
-            </ul>
-            <% } %>
+            </c:if>
+            <c:if test="${auth == null}">
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item">
+                        <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
+                    </li>
+                </ul>
+            </c:if>
         </ul>
     </div>
 </nav>
+<c:forEach var="note" items="${notes}">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card-container">
+                <div class="d-flex flex-wrap">
 
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="card-container">
-            <div class="d-flex flex-wrap">
-
-                <div class="card" style="width: 17rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${videoName}</h5>
-                        <p class="card-text">95 symbol of ${noteText} ...</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            See note
-                        </button>
-                        <a href="/video" class="card-link">Video</a>
+                    <div class="card" style="width: 17rem;">
+                        <div class="card-body">
+                                <h5 class="card-title">${note.id_video}</h5>
+                            <p class="card-text"> ${note.text}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                See note
+                            </button>
+                            <a href="/video" class="card-link">Video</a>
+                        </div>
                     </div>
-                </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                            </div>
-                            <form action="/notes" method="get">
-                                <div class="form-group" align="center">
-    <textarea type="text" class="form-control note" name="note"
-              rows="5">${noteText}</textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" name="save">
-                                        Save
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" name="delete">
-                                        Delete
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            </form>
+                                <div class="modal-body">
+                                </div>
+                                <form action="/notes" method="get">
+                                    <div class="form-group" align="center">
+    <textarea type="text" class="form-control note" name="note" rows="5">${note.text}</textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary"  name="save">
+                                            Save
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                name="delete">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
-</div>
+</c:forEach>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright &copy; Video Courses</small>

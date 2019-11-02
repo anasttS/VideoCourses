@@ -3,6 +3,7 @@ package BL;
 import DAO.ChannelDAO;
 import DAO.UserDAO;
 import models.Channel;
+import models.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class ChannelService {
     UserDAO userDAO = new UserDAO();
     ChannelDAO channelDAO = new ChannelDAO();
+
 
     public void createChannel(HttpServletRequest req, HttpServletResponse resp) {
         try {

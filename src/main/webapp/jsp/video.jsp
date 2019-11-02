@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Lectio (Backup 1571973011891)</title>
+    <title>Lectio</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-grid.css" rel="stylesheet">
     <link href="css/bootstrap-reboot.css" rel="stylesheet">
@@ -37,7 +38,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="/main">Lectio</a>
+    <a class="navbar-brand logo" href="<c:url value="/main"/>">Lectio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,30 +68,31 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <% session = request.getSession();
-                if ( session != null) { %>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="profile" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    ${username}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                     aria-labelledby="profile">
-                    <a class="dropdown-item" href="/profile">Profile</a>
-                    <a class="dropdown-item" href="/notes">My notes</a>
-                    <a class="dropdown-item" href="/logout">Logout</a>
-                </div>
-            </li>
-            <%--<% } else { %>--%>
-            <%--<ul class="navbar-nav ml-auto nav-flex-icons">--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a href="/login" class="nav-link text-white">Login</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a href="/register" class="nav-link text-white">Register</a>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
-            <%--<% } %>--%>
+            <%--@elvariable id="auth" type="pages.profile.ProfileServlet"--%>
+            <c:if test="${auth != null}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                            ${username}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="profile">
+                        <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
+                        <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
+                        <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
+                    </div>
+                </li>
+            </c:if>
+            <c:if test="${auth == null}">
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item">
+                        <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
+                    </li>
+                </ul>
+            </c:if>
         </ul>
     </div>
 </nav>
@@ -104,12 +106,11 @@
                 </div>
             </div>
             <div class="col-4" style="padding-left: 30px;">
-                <form action="/">
+                <form action="/video" method="post">
                     <div class="form-group"><textarea class="form-control"
                                                       style="width: 100%;height: 200px;margin-right: 20px;"
                                                       name="noteText"></textarea>
-                        <button class="btn btn-primary" type="submit" name="saveNote" style="margin: 0px;margin-top: 20px;">Button
-                        </button>
+                        <button class="btn btn-primary" type="submit" name="save" style="margin: 0px;margin-top: 20px;">Save</button>
                     </div>
                 </form>
                 <hr>
@@ -129,12 +130,13 @@
                         </div>
                     </div>
                 </div>
-            </div>s
+            </div>
         </div>
     </div>
 </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 <script src="assets/js/Simple-Slider.js"></script>
 </body>
