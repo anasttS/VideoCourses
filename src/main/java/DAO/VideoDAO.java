@@ -5,17 +5,18 @@ import models.Video;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VideoDAO {
     private static Connection connection = ConnectionProvider.getConnection();
 
-    public static ArrayList<Video> getVideoArr() {
+    public  ArrayList<Video> getVideoArr() {
         ArrayList<Video> videos = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM video;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                videos.add(new Video(resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("playlist_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url")));
+                videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));
             }
             return videos;
         } catch (SQLException e) {
@@ -56,16 +57,16 @@ public class VideoDAO {
 
     public void saveVideo(Video video) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO video (name, description, upload_date, owner_id, channel_id, playlist_id, likes, views, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO videocourses.video (name, description, upload_date, owner_id, channel_id, likes, views, url, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, video.getName());
             statement.setString(2, video.getDescription());
             statement.setString(3, video.getUpload_date().toString());
             statement.setInt(4, video.getOwner_id());
             statement.setInt(5, video.getChannel_id());
-            statement.setInt(6, video.getPlaylist_id());
-            statement.setInt(7, video.getLikes());
-            statement.setInt(8, video.getViews());
-            statement.setString(9, video.getUrl());
+            statement.setInt(6, video.getLikes());
+            statement.setInt(7, video.getViews());
+            statement.setString(8, video.getUrl());
+            statement.setString(9, video.getImg());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception during saveVideo");
@@ -75,7 +76,7 @@ public class VideoDAO {
 
     public void deleteVideo(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM video WHERE id = " + id);
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM video WHERE id_video = " + id);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception during deleteChannel");
@@ -85,7 +86,7 @@ public class VideoDAO {
 
     public String getVideonameByID(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -98,4 +99,101 @@ public class VideoDAO {
         }
         return null;
     }
+
+
+    public String getUrlById(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String url = resultSet.getString("url");
+                return url;
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
+    public String getDescriptionOfVideoByID(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String description = resultSet.getString("description");
+                return description;
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
+
+    public Date getDateOfVideoByID(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Date date = resultSet.getDate("upload_date");
+                return date;
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
+
+    public String getPreviewOfVideoByID(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String img = resultSet.getString("img");
+                return img;
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
+
+    public ArrayList<Video> getVideoArrByChannelId(int channel_id){
+        ArrayList<Video> videos = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE channel_id = ?");
+            statement.setInt(1,channel_id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));
+            }
+            return videos;
+        } catch (SQLException e) {
+            System.out.println("Exception during getVideosByChannelId");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Video getVideoByID(int id){
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE id_video = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+               return new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img"));
+            }
+        } catch (SQLException e) {
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
+
+
 }

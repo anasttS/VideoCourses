@@ -1,4 +1,4 @@
-package pages.logout;
+package pages;
 
 import UILogic.UICookieLogic;
 

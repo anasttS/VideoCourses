@@ -5,6 +5,7 @@
   Time: 23:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </html>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,36 +22,7 @@
     <title>Index</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
-    <a class="navbar-brand text-white" href="/main">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-
-            <li class="nav-item active">
-                <a class="nav-link text-white" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item text-white" href="#">Action</a>
-                    <a class="dropdown-item text-white" href="#">Another action</a>
-                    <a class="dropdown-item text-white" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
+<%@ include file="/jsp/navbar.jsp" %>
 <br>
 <p> You have logged out!</p>
 <a href="/login"> Login </a>

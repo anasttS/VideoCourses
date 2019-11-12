@@ -1,14 +1,30 @@
 package models;
 
 public class Note {
+    private int id;
     private String text;
     private int id_user;
     private int id_video;
+
+    public Note(int id, String text, int id_user, int id_video) {
+        this.id = id;
+        this.text = text;
+        this.id_user = id_user;
+        this.id_video = id_video;
+    }
 
     public Note(String text, int id_user, int id_video) {
         this.text = text;
         this.id_user = id_user;
         this.id_video = id_video;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getText() {
@@ -34,4 +50,5 @@ public class Note {
     public void setId_video(int id_video) {
         this.id_video = id_video;
     }
+
 }

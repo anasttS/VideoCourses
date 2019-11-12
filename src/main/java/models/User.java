@@ -11,6 +11,7 @@ public class User {
     private String interests;
     private int role_id;
     private String right;
+    private String img_user;
 
     public User(String email, String username, int password, LocalDate birthDate, String interests) {
         this.email = email;
@@ -18,6 +19,23 @@ public class User {
         this.password = password;
         this.birthDate = birthDate;
         this.interests = interests;
+    }
+
+    public User(String email, String username, int password, LocalDate birthDate, String interests, String img) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.interests = interests;
+        this.img_user = img;
+    }
+
+    public String getImg() {
+        return img_user;
+    }
+
+    public void setImg(String img) {
+        this.img_user = img;
     }
 
     public String getRight() {
@@ -77,12 +95,12 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     public int getPassword() {
         return password;
     }
 
+    public String getUsername() {
+        return username;
+    }
 }

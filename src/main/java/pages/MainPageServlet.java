@@ -1,4 +1,4 @@
-package pages.mainPage;
+package pages;
 
 import BL.UserService;
 

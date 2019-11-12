@@ -1,34 +1,83 @@
 package BL;
 
-import DAO.NoteDAO;
+import DAO.ChannelDAO;
 import DAO.UserDAO;
-import models.Note;
+import DAO.VideoDAO;
+import UILogic.MediaAdd;
+import models.Video;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class VideoService {
     UserDAO userDAO = new UserDAO();
-    NoteDAO noteDAO = new NoteDAO();
-    UserService service = new UserService();
+    ChannelDAO channelDAO = new ChannelDAO();
+    VideoDAO videoDAO = new VideoDAO();
 
-
-    public void saveNote(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession session = req.getSession();
-        try {
-            if (req.getParameter("save") != null) {
-                String note = req.getParameter("noteText");
-                int id_video = 1;
-                int id_user = service.getIdByEmail((String) session.getAttribute("current_user"));
-                noteDAO.saveNoteBD(new Note(note, id_user, id_video));
-                resp.sendRedirect("/video");
+    public void sendToAddVideoPage(HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getParameter("redirect") != null) {
+            try {
+                resp.sendRedirect("/addVideo");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            System.out.println("Exception during saveNote");
-            throw new IllegalArgumentException();
         }
+    }
+    public void sendToVideoPage(HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getParameter("id") != null) {
+            try {
+                resp.sendRedirect("/video");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addVideo(HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getParameter("addVideo") != null) {
+            int idUser = userDAO.findIDofUser((String) req.getSession().getAttribute("current_user"));
+            int idChannel = channelDAO.findIDofChannelByUserID(idUser);
+            String title = req.getParameter("videoName");
+            String description = req.getParameter("description");
+            MediaAdd m = new MediaAdd();
+            String url;
+            String img;
+            try {
+                url = m.addMedia(req, "fileM");
+                img = m.addMedia(req, "fileP");
+            } catch (IOException | ServletException e) {
+                System.out.println();
+                throw new IllegalArgumentException();
+            }
+            int likes = 0;
+            int views = 0;
+            LocalDate upload_date = LocalDate.now();
+            Video video = new Video(title, description, upload_date, idUser, idChannel, likes, views, url, img);
+            videoDAO.saveVideo(video);
+            try {
+                resp.sendRedirect("/channelProfile");
+            } catch (IOException e) {
+                System.out.println();
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public String getUrlById(int id){
+        String url = null;
+        videoDAO.getUrlById(id);
+        return url;
+    }
+    public ArrayList<Video> getVideos() {
+        return videoDAO.getVideoArr();
+    }
+
+    public Video findVideoById(int id){
+        return videoDAO.getVideoByID(id);
     }
 }
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +20,7 @@
     <title>Register</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white" href="/main">Navbar</a>
-</nav>
+<%@ include file="/jsp/navbar.jsp" %>
 <div class="container-fluid">
     <br>
     <br>
@@ -33,11 +32,12 @@
             <br>
             <br>
             <br>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
                     <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
                 </div>
+                ${message}
                 <div class="form-group">
                     <label for="inputEmail">Email address</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">
@@ -50,19 +50,42 @@
                     <label for="example-date-input">Birth Date</label>
                     <input class="form-control" type="date" id="example-date-input" name="birthDate">
                 </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="preview" name="fileP">
+                    <label class="custom-file-label" for="preview">Add your photo</label>
+                </div>
                 <br>
-                <span><h4>Choose your interests</h4></span>
-                <p><label>
-                    <select size="6" multiple="multiple" name="interests">
-                        <option disabled> Choose your interests </option>
-                        <option value="IT" selected="selected"> IT </option>
-                        <option value="Math"> Math </option>
-                        <option value="Languages"> Languages </option>
-                        <option value="Medicine"> Medicine </option>
-                        <option value="Psychology"> Psychology </option>
-                        <option value="Business"> Business </option>
-                    </select>
-                </label></p>
+                <hr>
+                <span><h6>Choose you interests</h6></span>
+                <!-- Default inline 1-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline1" name="Interest1" value="IT">
+                    <label class="custom-control-label" for="defaultInline1">IT</label>
+                </div>
+
+                <!-- Default inline 2-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline2" name="Interest2" value="Math">
+                    <label class="custom-control-label" for="defaultInline2">Math</label>
+                </div>
+
+                <!-- Default inline 3-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline3" name="Interest3" value="Music">
+                    <label class="custom-control-label" for="defaultInline3">Music</label>
+                </div>
+
+                <!-- Default inline 4-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline4" name="Interest4" value="Business">
+                    <label class="custom-control-label" for="defaultInline3">Business</label>
+                </div>
+
+                <!-- Default inline 5-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline5" name="Interest5" value="English">
+                    <label class="custom-control-label" for="defaultInline3">English</label>
+                </div>
                 <%--<div class="form-check">--%>
                     <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck1">--%>
                     <%--<label class="form-check-label" for="InterestCheck1">--%>

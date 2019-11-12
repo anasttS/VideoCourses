@@ -1,5 +1,7 @@
-<!DOCTYPE html>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +10,7 @@
     <link href="css/bootstrap-grid.css" rel="stylesheet">
     <link href="css/bootstrap-reboot.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atomic+Age|Monoton|Raleway:900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -20,56 +23,45 @@
     <title>Channel</title>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white" href="/main2">Navbar</a>
-</nav>
-<div class="container-fluid">
-    <br>
-    <br>
-    <diw class="row">
-        <div class="col"></div>
-        <div class="col-md-3" align="center">
-            <span><h1>Channel Profile</h1></span>
-            <br>
-            <br>
-            <p>
-            <h2>${nameOfChannel}</h2></p>
-            <br>
-            <form method="post" action="/channelProfile">
-                <p><label for="name"> Name
-                    <input type="text" id="name" name="name">
-                </label></p>
-                <p><label for="description"> Description
-                    <input type="text" id="description" name="description">
-                </label></p>
-                <p><label for="upload_date"> Date
-                    <input type="date" id="upload_date" name="upload_date">
-                </label></p>
-                <p><input type="submit" name="add" value="add"></p>
-            </form>
-            <%--<p>Your videos:</p>--%>
-            <%--<table>--%>
-                <%--<tr>--%>
-                    <%--<th>Name</th>--%>
-                    <%--<th>Upload Date</th>--%>
-                <%--</tr>--%>
-                <%--<c:forEach items="${videos}" var="video">--%>
-                    <%--<tr>--%>
-                        <%--<td>${video.name}</td>--%>
-                        <%--<td>${video.upload_date}</td>--%>
-                        <%--<form method="post" action="/channelProfile">--%>
-                            <%--<td>--%>
-                                <%--<button name="delete" id="delete" value="${video.name}">Delete</button>--%>
-                            <%--</td>--%>
-                        <%--</form>--%>
-                    <%--</tr>--%>
-                <%--</c:forEach>--%>
-            <%--</table>--%>
+<%@ include file="/jsp/navbar.jsp" %>
+<div class="channel-container">
+    <div class="channel-header">
+        <div class="channel-header-image">
+            <img src="${img}" alt="img" class="img-thumbnail2" width="120px" height="120px">
         </div>
-        <a href="/profile">Profile</a>
-        <div class="col"></div>
-    </diw>
+        <div class="channel-header-description">
+            <h2>${nameOfChannel}</h2>
+            <span>${channelDescription}</span>
+            <div class="fa-align-right">
+                <form method="post" action="/channelProfile">
+                <button class="btn-sm btn-primary" name="redirect" type="submit">Add Video</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <c:forEach var="video" items="${videos}">
+        <div class="card-container">
+            <div class="d-flex flex-wrap">
+
+                <!--Карточка-->
+                <div class="card" style="width: 18rem;">
+                    <img src="${video.img}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${video.name}</h5>
+                        <p class="card-text">${video.description}</p>
+                        <form action="/video" method="get">
+                            <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id"> Watch video</button>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </c:forEach>
+</div>
+<br>
 </div>
 <br>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">

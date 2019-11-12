@@ -1,4 +1,4 @@
-package pages.video;
+package pages;
 
 import BL.NoteService;
 import BL.UserService;
@@ -35,7 +35,5 @@ public class NoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             noteService.editNote(req, resp);
             noteService.deleteNote(req, resp);
-
-
     }
 }

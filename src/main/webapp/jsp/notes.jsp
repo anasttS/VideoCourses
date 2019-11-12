@@ -23,64 +23,8 @@
     <title>Notes</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="/main">Lectio</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-3333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Dropdown
-                </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <c:if test="${auth != null}">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                            ${username}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                         aria-labelledby="main">
-                        <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
-                        <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
-                        <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
-                    </div>
-                </li>
-            </c:if>
-            <c:if test="${auth == null}">
-                <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item">
-                        <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
-                    </li>
-                </ul>
-            </c:if>
-        </ul>
-    </div>
-</nav>
+<%@ include file="/jsp/navbar.jsp" %>
+
 <c:forEach var="note" items="${notes}">
     <div class="row">
         <div class="col-md-2"></div>
@@ -90,16 +34,22 @@
 
                     <div class="card" style="width: 17rem;">
                         <div class="card-body">
-                                <h5 class="card-title">${note.id_video}</h5>
+                            <h5 class="card-title">${note.id}</h5>
                             <p class="card-text"> ${note.text}</p>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#exampleModal">
+                                    data-target="#note${note.id}">
                                 See note
                             </button>
-                            <a href="/video" class="card-link">Video</a>
+                            <form method="post" action="/notes">
+                            <button id="delete" class="btn btn-secondary" data-dismiss="modal"
+                                    name="delete" value="${note.id}">
+                                Delete
+                            </button>
+                            </form>
+                            <a href="<c:url value="/video"/>" class="card-link">Video</a>
                         </div>
                     </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="note${note.id}" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -111,17 +61,14 @@
                                 </div>
                                 <div class="modal-body">
                                 </div>
-                                <form action="/notes" method="get">
+                                <form action="/notes" method="post">
                                     <div class="form-group" align="center">
-    <textarea type="text" class="form-control note" name="note" rows="5">${note.text}</textarea>
+                                        <textarea type="text" class="form-control note" name="note"
+                                                  rows="5">${note.text}</textarea>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary"  name="save">
+                                        <button type="submit" class="btn btn-primary" name="edit" value="${note.id}">
                                             Save
-                                        </button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                                name="delete">
-                                            Delete
                                         </button>
                                     </div>
                                 </form>

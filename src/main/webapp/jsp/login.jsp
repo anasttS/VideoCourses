@@ -21,13 +21,11 @@
     <title>Login</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white" href="/main">Navbar</a>
-</nav>
+<%@ include file="/jsp/navbar.jsp" %>
 <div class="container-fluid">
     <br>
     <br>
-    <diw class="row">
+    <div class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
             <span><h1>Login</h1></span>
@@ -36,6 +34,7 @@
             <br>
             <br>
             <form method="post">
+                ${message}
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
@@ -52,7 +51,7 @@
             </form>
         </div>
         <div class="col"></div>
-    </diw>
+    </div>
 </div>
 <br>
 

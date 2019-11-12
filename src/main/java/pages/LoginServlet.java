@@ -1,4 +1,4 @@
-package pages.login;
+package pages;
 
 import BL.UserService;
 import UILogic.UICookieLogic;

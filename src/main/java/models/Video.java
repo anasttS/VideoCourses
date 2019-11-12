@@ -3,36 +3,57 @@ package models;
 import java.time.LocalDate;
 
 public class Video {
-    private int id;
+    private int id_video;
     private String name;
     private String description;
     private LocalDate upload_date;
     private int owner_id;
     private int channel_id;
-    private int playlist_id;
     private int likes;
     private int views;
     private String url;
+    private String img;
 
-    public Video(String name, String description, LocalDate upload_date, int owner_id, int channel_id, int playlist_id, int likes, int views, String url) {
-        this.id = id;
+    public Video(int id, String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img) {
+        this.id_video = id;
         this.name = name;
         this.description = description;
         this.upload_date = upload_date;
         this.owner_id = owner_id;
         this.channel_id = channel_id;
-        this.playlist_id = playlist_id;
         this.likes = likes;
         this.views = views;
         this.url = url;
+        this.img = img;
+    }
+    public Video(int id, String name, String description, LocalDate upload_date, int owner_id, int channel_id, String url, String img) {
+        this.id_video = id;
+        this.name = name;
+        this.description = description;
+        this.upload_date = upload_date;
+        this.owner_id = owner_id;
+        this.channel_id = channel_id;
+        this.url = url;
+        this.img = img;
     }
 
-    public int getId() {
-        return id;
+    public Video(String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img) {
+        this.name = name;
+        this.description = description;
+        this.upload_date = upload_date;
+        this.owner_id = owner_id;
+        this.channel_id = channel_id;
+
+        this.url = url;
+        this.img = img;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId_video() {
+        return id_video;
+    }
+
+    public void setId_video(int id_video) {
+        this.id_video = id_video;
     }
 
     public String getName() {
@@ -75,12 +96,12 @@ public class Video {
         this.channel_id = channel_id;
     }
 
-    public int getPlaylist_id() {
-        return playlist_id;
+    public String getImg() {
+        return img;
     }
 
-    public void setPlaylist_id(int playlist_id) {
-        this.playlist_id = playlist_id;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getLikes() {

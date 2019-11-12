@@ -1,5 +1,19 @@
-
+<%@ page import="BL.UserService" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%--<jsp:useBean id="username" class="pages.ProfileServlet" scope="session">--%>
+<%--<% UserService userService = new UserService(); %>--%>
+<%--<jsp:setProperty name="username" property="username"--%>
+<%--value=" <%= userService.getUsernameByEmail((String) request.getSession().getAttribute("current_user")) %>"/>--%>
+<%--<jsp:setProperty name="email" property="email"--%>
+<%--value=" <%= (String) request.getSession().getAttribute("current_user") %>"/>--%>
+<%--<jsp:setProperty name="birthDate" property="birthDate"--%>
+<%--value=" <%= userService.getbirthDateByEmail((String) request.getSession().getAttribute("current_user")) + ""  %>"/>--%>
+<%--<jsp:setProperty name="auth" property="email"--%>
+<%--value=" <%= (String) request.getSession().getAttribute("current_user") %>"/>--%>
+<%--</jsp:useBean>--%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,138 +36,82 @@
     <title>Profile</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="<c:url value="/main"/>">Lectio</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-3333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Dropdown
-                </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-                <c:if test="${auth != null}">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                                ${username}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                             aria-labelledby="profile">
-                            <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
-                            <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
-                            <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
-                        </div>
-                    </li>
-                </c:if>
-                <c:if test="${auth == null}">
-                    <ul class="navbar-nav ml-auto nav-flex-icons">
-                        <li class="nav-item">
-                            <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
-                        </li>
-                    </ul>
-                </c:if>
-        </ul>
-    </div>
-</nav>
+<%@ include file="/jsp/navbar.jsp" %>
+
 <br>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <img src="${img}" class="img-thumbnail2" alt="..." width="200px" height="200px">
+        </div>
         <div class="col-md-8">
-
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/img.jpeg" alt="img" class="img-thumbnail2" width="200px" height="200px">
+            <span><h3>Profile ${username}</h3></span>
+            <form method="post" action="<c:url value="/profile"/>">
+                <div class="form-group">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username"
+                           name="username" value="${username}">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"
+                           name="email" value="${email}">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                           name="password">
+                </div>
+                <div class="form-group">
+                    <label for="example-date-input">Birth Date</label>
+                    <input class="form-control" type="date" id="example-date-input" name="birthDate"
+                           value="${birthDate}">
+                </div>
+                <hr>
+                <span><h6>Choose you interests</h6></span>
+                <!-- Default inline 1-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline1" value="IT" name="Interest1">
+                    <label class="custom-control-label" for="defaultInline1">IT</label>
                 </div>
 
-                <div class="col-md-8">
-                    <span><h3>Profile ${username}</h3></span>
-                    <form method="post" action="<c:url value="/profile"/>">
-                        <div class="form-group">
-                            <label for="inputUsername">Username</label>
-                            <input type="text" class="form-control" id="inputUsername" placeholder="Enter username"
-                                   name="username" value="${username}">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"
-                                   name="email" value="${email}">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-                                   name="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="example-date-input">Birth Date</label>
-                            <input class="form-control" type="date" id="example-date-input" name="birthDate"
-                                   value="${birthDate}">
-                        </div>
-                        <hr>
-                        <span><h6>Choose you interests</h6></span>
-                        <!-- Default inline 1-->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultInline1" name="Interest1">
-                            <label class="custom-control-label" for="defaultInline1">1</label>
-                        </div>
-
-                        <!-- Default inline 2-->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultInline2" name="Interest2">
-                            <label class="custom-control-label" for="defaultInline2">2</label>
-                        </div>
-
-                        <!-- Default inline 3-->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultInline3" name="Interest3">
-                            <label class="custom-control-label" for="defaultInline3">3</label>
-                        </div>
-
-                        <!-- Default inline 3-->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultInline4" name="Interest3">
-                            <label class="custom-control-label" for="defaultInline3">4</label>
-                        </div>
-
-                        <!-- Default inline 3-->
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultInline5" name="Interest3">
-                            <label class="custom-control-label" for="defaultInline3">5</label>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary" name="save">Save Changes</button>
-                        <button type="submit" class="btn btn-primary" name="delete">Delete account</button>
-                    </form>
+                <!-- Default inline 2-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline2" value="Math"
+                           name="Interest2">
+                    <label class="custom-control-label" for="defaultInline2">Math</label>
                 </div>
 
-            </div>
+                <!-- Default inline 3-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline3" value="Business"
+                           name="Interest3">
+                    <label class="custom-control-label" for="defaultInline3">Business</label>
+                </div>
+
+                <!-- Default inline 3-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline4" value="Music"
+                           name="Interest3">
+                    <label class="custom-control-label" for="defaultInline3">Music</label>
+                </div>
+
+                <!-- Default inline 3-->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultInline5" value="English"
+                           name="Interest3">
+                    <label class="custom-control-label" for="defaultInline3">English</label>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" name="save">Save Changes</button>
+                <button type="submit" class="btn btn-primary" name="createChannel">Create channel</button>
+                <button type="submit" class="btn btn-primary" name="delete">Delete account</button>
+
+            </form>
         </div>
     </div>
+</div>
 </div>
 <br>
 <br>
