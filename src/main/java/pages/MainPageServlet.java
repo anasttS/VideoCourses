@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/main")
+@WebServlet("/")
 public class MainPageServlet extends HttpServlet {
     UserService userService = new UserService();
     @Override

@@ -6,6 +6,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class VideoDAO {
     private static Connection connection = ConnectionProvider.getConnection();
@@ -14,6 +15,21 @@ public class VideoDAO {
         ArrayList<Video> videos = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM video;");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));
+            }
+            return videos;
+        } catch (SQLException e) {
+            System.out.println("Exception during getVideos");
+            throw new IllegalArgumentException();
+        }
+    }
+    public  ArrayList<Video> getRandomVideoArr() {
+        ArrayList<Video> videos = new ArrayList<>();
+        try {
+            Random r = new Random();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));

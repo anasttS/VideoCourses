@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <form action="/video" method="get" id="searchForm" class="input-group" class="channel-header">
+            <form action="/videos" method="get" id="searchForm" class="input-group" class="channel-header">
                 <div class="input-group-btn search-panel">
                     <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
                             data-toggle="dropdown" onfocus="">
@@ -40,7 +40,7 @@
                 <input type="text" class="form-control mr-sm-2" name="x" id="query" oninput="f()"
                        placeholder="Search term...">
                 <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
+                        <button class="btn btn-default" type="submit"> Search
                            <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
@@ -85,29 +85,35 @@
 </div>
 
 
+<div class="container-fluid">
+    <div class="row">
+        <c:forEach var="video" items="${videos}">
+            <div class="channel-container">
+                <div class="card-container">
+                    <div class="d-flex flex-wrap">
 
-<c:forEach var="video" items="${videos}">
-<div class="channel-container">
-    <div class="card-container">
-        <div class="d-flex flex-wrap">
+                        <!--Карточка-->
+                        <div class="card" style="width: 18rem;">
+                            <img src="${video.img}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${video.name}</h5>
+                                <p class="card-text">${video.description}...</p>
+                                <form action="/video" method="get">
+                                    <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id">
+                                        Watch video
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
 
-            <!--Карточка-->
-            <div class="card" style="width: 18rem;">
-                <img src="${video.img}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${video.name}</h5>
-                    <p class="card-text">${video.description}...</p>
-                    <form action="/video" method="get">
-                        <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id"> Watch video</button>
-                    </form>
+
+                    </div>
                 </div>
             </div>
+        </c:forEach>
 
-
-        </div>
     </div>
 </div>
-</c:forEach>
 <br>
 <br>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">

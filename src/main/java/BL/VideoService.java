@@ -18,7 +18,8 @@ public class VideoService {
     ChannelDAO channelDAO = new ChannelDAO();
     VideoDAO videoDAO = new VideoDAO();
 
-    public void sendToAddVideoPage(HttpServletRequest req, HttpServletResponse resp) {
+    public void sendToAddVideoPage( HttpServletRequest req, HttpServletResponse resp) {
+
         if (req.getParameter("redirect") != null) {
             try {
                 resp.sendRedirect("/addVideo");
@@ -27,15 +28,15 @@ public class VideoService {
             }
         }
     }
-    public void sendToVideoPage(HttpServletRequest req, HttpServletResponse resp) {
-        if (req.getParameter("id") != null) {
-            try {
-                resp.sendRedirect("/video");
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void sendToVideoPage( HttpServletRequest req, HttpServletResponse resp) {
+            if (req.getParameter("id") != null) {
+                try {
+                    resp.sendRedirect("/video");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
 
     public void addVideo(HttpServletRequest req, HttpServletResponse resp) {
         if (req.getParameter("addVideo") != null) {
@@ -74,6 +75,10 @@ public class VideoService {
     }
     public ArrayList<Video> getVideos() {
         return videoDAO.getVideoArr();
+    }
+
+    public ArrayList<Video> getRandomVideos() {
+        return videoDAO.getRandomVideoArr();
     }
 
     public Video findVideoById(int id){

@@ -40,49 +40,66 @@ public class ChannelService {
         return videoDAO.getVideoArrByChannelId(channel_id);
     }
 
-    public void sendToCreatingChannel(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            if (!channelDAO.channelIsExist(userDAO.findIDofUser((String) req.getSession().getAttribute("current_user")))) {
-                resp.sendRedirect("/createChannel");
-            }
-        } catch (IOException e) {
-            System.out.println("Exception during sending to Creating channel page");
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void createChannel(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            if (req.getParameter("createChannel") != null) {
-                String email = (String) req.getSession().getAttribute("current_user");
-                String nameOfChannel = req.getParameter("nameOfChannel");
-                req.getSession().setAttribute("nameOfChannel", nameOfChannel);
-                MediaAdd m = new MediaAdd();
-                String img;
+    public void sendToCreatingChannel(int id, HttpServletRequest req, HttpServletResponse resp) {
+        if (req.getParameter("createChannel") != null) {
+            if (id != 0) {
                 try {
-                    img = m.addMedia(req, "fileP");
-                } catch (IOException | ServletException e) {
+                    resp.sendRedirect("/channelProfile");
+                } catch (IOException e) {
+                    System.out.println("Exception during sending to Creating channel page");
+                    throw new IllegalArgumentException();
+                }
+            } else {
+                try {
+                    resp.sendRedirect("/channel");
+                } catch (IOException e) {
                     System.out.println();
                     throw new IllegalArgumentException();
                 }
-                channelDAO.createChannel(new Channel(userDAO.findIDofUser(email), nameOfChannel, img));
-                userDAO.createChannel(channelDAO.findIDofChannelByUserID(userDAO.findIDofUser(email)), email);
-                resp.sendRedirect("/channelProfile");
             }
-        } catch (IOException e) {
-            System.out.println("Exception during creating channel");
-            throw new IllegalArgumentException();
         }
     }
+            public void createChannel ( int id, HttpServletRequest req, HttpServletResponse resp){
+                if (req.getParameter("createChannel") != null) {
+                    if (id != 0) {
+                        try {
+                            resp.sendRedirect("/channelProfile");
+                        } catch (IOException e) {
+                            System.out.println();
+                            throw new IllegalArgumentException();
+                        }
+                    } else {
+                        try {
+                            String email = (String) req.getSession().getAttribute("current_user");
+                            String nameOfChannel = req.getParameter("nameOfChannel");
+                            req.getSession().setAttribute("nameOfChannel", nameOfChannel);
+                            MediaAdd m = new MediaAdd();
+                            String img;
+                            try {
+                                img = m.addMedia(req, "fileP");
+                            } catch (IOException | ServletException e) {
+                                System.out.println();
+                                throw new IllegalArgumentException();
+                            }
+                            channelDAO.createChannel(new Channel(userDAO.findIDofUser(email), nameOfChannel, img));
+                            userDAO.createChannel(channelDAO.findIDofChannelByUserID(userDAO.findIDofUser(email)), email);
+                            resp.sendRedirect("/channelProfile");
+                        } catch (IOException e) {
+                            System.out.println("Exception during creating channel");
+                            throw new IllegalArgumentException();
+                        }
+                    }
+                }
+            }
 
-    public String findNameofChannelByUserId(int owner_id) {
-        String name = channelDAO.findNameOfChannelByUserID(owner_id);
-        return name;
-    }
+            public String findNameofChannelByUserId ( int owner_id){
+                String name = channelDAO.findNameOfChannelByUserID(owner_id);
+                return name;
+            }
 
-    public String findImgOfChannelByUserId(int owner_id) {
-        String img = channelDAO.findImgOfChannelByUserID(owner_id);
-        return img;
-    }
+            public String findImgOfChannelByUserId ( int owner_id){
+                String img = channelDAO.findImgOfChannelByUserID(owner_id);
+                return img;
+            }
 
-}
+        }

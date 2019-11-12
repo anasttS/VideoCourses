@@ -1,6 +1,7 @@
 package pages;
 
 import BL.ChannelService;
+import BL.UserService;
 import DAO.ChannelDAO;
 import DAO.UserDAO;
 import models.Channel;
@@ -20,6 +21,7 @@ import java.io.IOException;
 @WebServlet("/channel")
 public class CreateChannelServlet extends HttpServlet {
     ChannelService channelService = new ChannelService();
+    UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,6 +31,7 @@ public class CreateChannelServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        channelService.createChannel(req, resp);
+        int id = channelService.getIdByName(channelService.findNameofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
+        channelService.createChannel(id, req, resp);
     }
 }

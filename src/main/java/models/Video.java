@@ -13,6 +13,7 @@ public class Video {
     private int views;
     private String url;
     private String img;
+    private String username;
 
     public Video(int id, String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img) {
         this.id_video = id;
@@ -46,6 +47,14 @@ public class Video {
 
         this.url = url;
         this.img = img;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getId_video() {

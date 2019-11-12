@@ -31,7 +31,8 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        channelService.sendToCreatingChannel(req, resp);
+        int id = channelService.getIdByName(channelService.findNameofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
+        channelService.sendToCreatingChannel(id, req, resp);
       userService.edit(req, resp);
       userService.delete(req, resp);
 

@@ -25,62 +25,65 @@
 <body>
 <%@ include file="/jsp/navbar.jsp" %>
 
-<c:forEach var="note" items="${notes}">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="card-container">
-                <div class="d-flex flex-wrap">
+        <c:forEach var="note" items="${notes}">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card-container">
+                    <div class="d-flex flex-wrap">
 
-                    <div class="card" style="width: 17rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">${note.id}</h5>
-                            <p class="card-text"> ${note.text}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#note${note.id}">
-                                See note
-                            </button>
-                            <form method="post" action="/notes">
-                            <button id="delete" class="btn btn-secondary" data-dismiss="modal"
-                                    name="delete" value="${note.id}">
-                                Delete
-                            </button>
-                            </form>
-                            <a href="<c:url value="/video"/>" class="card-link">Video</a>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="note${note.id}" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Note</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                        <div class="card" style="width: 17rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">${note.id}</h5>
+                                <p class="card-text"> ${note.text}</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#note${note.id}">
+                                    See note
+                                </button>
+                                <form method="post" action="/notes">
+                                    <button id="delete" class="btn btn-secondary" data-dismiss="modal"
+                                            name="delete" value="${note.id}">
+                                        Delete
                                     </button>
-                                </div>
-                                <div class="modal-body">
-                                </div>
-                                <form action="/notes" method="post">
-                                    <div class="form-group" align="center">
-                                        <textarea type="text" class="form-control note" name="note"
-                                                  rows="5">${note.text}</textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary" name="edit" value="${note.id}">
-                                            Save
+                                </form>
+                                <a href="<c:url value="/video?id=${note.id_video}"/>" class="card-link">Video</a>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="note${note.id}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                </form>
+                                    <div class="modal-body">
+                                    </div>
+                                    <form action="/notes" method="post">
+                                        <div class="form-group" align="center">
+                                        <textarea type="text" class="form-control note" name="note"
+                                                  rows="5">${note.text}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" name="edit"
+                                                    value="${note.id}">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+        </c:forEach>
     </div>
-</c:forEach>
+</div>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright &copy; Video Courses</small>

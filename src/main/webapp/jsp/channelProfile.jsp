@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -34,33 +33,38 @@
             <span>${channelDescription}</span>
             <div class="fa-align-right">
                 <form method="post" action="/channelProfile">
-                <button class="btn-sm btn-primary" name="redirect" type="submit">Add Video</button>
+                    <button class="btn-sm btn-primary" name="redirect" type="submit">Add Video</button>
                 </form>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <c:forEach var="video" items="${videos}">
+                <div class="card-container">
+                    <div class="d-flex flex-wrap">
 
-    <c:forEach var="video" items="${videos}">
-        <div class="card-container">
-            <div class="d-flex flex-wrap">
-
-                <!--Карточка-->
-                <div class="card" style="width: 18rem;">
-                    <img src="${video.img}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${video.name}</h5>
-                        <p class="card-text">${video.description}</p>
-                        <form action="/video" method="get">
-                            <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id"> Watch video</button>
-                        </form>
+                        <!--Карточка-->
+                        <div class="card" style="width: 18rem;">
+                            <img src="${video.img}" class="card-img-top" alt="...">
+                            <div class="card-body" style="height: 185px;">
+                                <h5 class="card-title">${video.name}</h5>
+                                <p class="card-text">${video.description}</p>
+                                <form action="/video" method="get">
+                                    <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id">
+                                        Watch
+                                        video
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-            </div>
+            </c:forEach>
         </div>
-    </c:forEach>
+    </div>
 </div>
+
 <br>
 </div>
 <br>

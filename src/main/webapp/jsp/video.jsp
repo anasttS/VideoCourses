@@ -87,19 +87,17 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="small-channel-info d-flex d-lg-inline">
-                            <img src="assets/img/1.jpg" alt="channel logo" class="small-channel-image"
+                            <img src="${imgOfChannel}" alt="channel logo" class="small-channel-image"
                                  style="width: 50px; height: 50px;">
-                            <span>Channel name</span>
+                            <span>${nameOfChannel}</span>
                         </div>
                     </div>
-                    <div class="col-md-9 d-flex flex-row-reverse">
-                        <button type="button" class="btn btn-primary">Subscribe</button>
-                    </div>
+
                 </div>
                 <br>
                 <div class="row">
                     <div class="video-description">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tortor pretium viverra suspendisse potenti nullam ac. Dictum non consectetur a erat. Leo vel orci porta non pulvinar. Risus commodo viverra maecenas accumsan lacus. Aliquet risus feugiat in ante metus dictum at tempor commodo. Et netus et malesuada fames ac. Justo donec enim diam vulputate. Nunc scelerisque viverra mauris in aliquam sem. Diam maecenas ultricies mi eget mauris. Malesuada fames ac turpis egestas maecenas pharetra convallis.</span>
+                        <span>${video.description}</span>
                     </div>
                 </div>
                 <hr>
@@ -109,7 +107,8 @@
                         <input type="text" name="text" class="form-control" placeholder="Write a comment"
                                style="margin-right: 10px;">
                         <input type="hidden" name="id" value="${video.id_video}">
-                        <button type="submit" class="btn btn-primary" name="send" value="${video.id_video}">Send</button>
+                        <button type="submit" class="btn btn-primary" name="send" value="${video.id_video}">Send
+                        </button>
                     </form>
                 </div>
                 <hr>
@@ -134,141 +133,19 @@
                                                       style="width: 100%;height: 200px;margin-right: 20px;"
                                                       name="noteText"></textarea>
                         <input type="hidden" name="id" value="${video.id_video}">
-                        <button name="save" class="btn btn-primary" type="submit" style="margin: 0px;margin-top: 20px;">Button
+                        <button name="save" class="btn btn-primary" type="submit" style="margin: 0px;margin-top: 20px;">
+                            Button
                         </button>
                     </div>
                 </form>
                 <hr>
-                <div>
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="small-video-card">
-                        <div class="row" style="padding: 0px;">
-                            <div class="col-md-6">
-                                <img src="assets/img/1.jpg" alt="" class="card-img-left">
-                            </div>
-                            <div class="col" style="padding: 0">
-                                <div>
-                                    <h6>Video name</h6>
-                                    <small>${authorName}</small>
-                                    <br>
-                                    <small>${likes} likes</small>
-                                    <br>
-                                    <small>${videoTopic}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+
         </div>
     </div>
+</div>
+</div>
 </div>
 </div>
 </body>
