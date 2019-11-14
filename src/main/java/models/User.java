@@ -6,27 +6,24 @@ public class User {
     private int id;
     private String email;
     private String username;
-    private int password;
+    private String password;
     private LocalDate birthDate;
-    private String interests;
     private int role_id;
     private String right;
     private String img_user;
 
-    public User(String email, String username, int password, LocalDate birthDate, String interests) {
+    public User(String email, String username, String password, LocalDate birthDate) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.birthDate = birthDate;
-        this.interests = interests;
     }
 
-    public User(String email, String username, int password, LocalDate birthDate, String interests, String img) {
+    public User(String email, String username, String password, LocalDate birthDate, String img) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.birthDate = birthDate;
-        this.interests = interests;
         this.img_user = img;
     }
 
@@ -79,24 +76,16 @@ public class User {
     }
 
 
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 

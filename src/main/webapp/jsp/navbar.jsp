@@ -13,7 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="<c:url value="/"/>">Lectio</a>
+    <a class="navbar-brand logo" href="<c:url value="/main"/>">Lectio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,25 +21,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link text-white" href="/videos">Videos
+                <a class="nav-link text-white" href="/main">Main</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/allVideos">All Videos
                     <span class="sr-only">(current)</span>
                 </a>
-            <%--</li>--%>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/videos">Interesting Videos
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
             <%--<li class="nav-item">--%>
-                <%--<a class="nav-link text-white" href="#">Features</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link text-white" href="#">Pricing</a>--%>
+            <%--<a class="nav-link text-white" href="#">Pricing</a>--%>
             <%--</li>--%>
             <%--<li class="nav-item dropdown">--%>
-                <%--<a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-3333" data-toggle="dropdown"--%>
-                   <%--aria-haspopup="true" aria-expanded="false">Dropdown--%>
-                <%--</a>--%>
-                <%--<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3333">--%>
-                    <%--<a class="dropdown-item" href="#">Action</a>--%>
-                    <%--<a class="dropdown-item" href="#">Another action</a>--%>
-                    <%--<a class="dropdown-item" href="#">Something else here</a>--%>
-                <%--</div>--%>
+            <%--<a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-3333" data-toggle="dropdown"--%>
+            <%--aria-haspopup="true" aria-expanded="false">Dropdown--%>
+            <%--</a>--%>
+            <%--<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3333">--%>
+            <%--<a class="dropdown-item" href="#">Action</a>--%>
+            <%--<a class="dropdown-item" href="#">Another action</a>--%>
+            <%--<a class="dropdown-item" href="#">Something else here</a>--%>
+            <%--</div>--%>
             <%--</li>--%>
         </ul>
         <ul class="navbar-nav ml-auto">

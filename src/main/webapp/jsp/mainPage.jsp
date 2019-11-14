@@ -75,8 +75,6 @@
         <!-- Start: Intro -->
         <div class="intro">
             <h2 class="text-center">Why our project is good</h2>
-            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat,
-                pellentesque ut laoreet vitae. </p>
         </div>
         <!-- End: Intro -->
         <hr>
@@ -84,18 +82,15 @@
         <div class="row features">
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-group icon"></i>
                 <h3 class="name">Good users</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">There is you can find a lot of information, and if you don’t understand something, you can ask someone in chat.</p>
             </div>
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
                 <h3 class="name">Always available</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">You can use it 24/7.</p>
             </div>
             <div class="col-sm-6 col-lg-4 item"><i class="fa fa-gift icon"></i>
                 <h3 class="name">Free</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                <p class="description">All videos and features are available to any registered user. </p>
             </div>
         </div>
         <!-- End: Features -->
@@ -118,9 +113,8 @@
                     <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a>
                     </div>
                     <div class="col">
-                        <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
-                            Praesent aliquam in tellus eu gravida.</p>
+                        <h3 class="name">Easy math</h3>
+                        <p class="description">Informative course about math.</p>
                     </div>
                 </div>
             </div>
@@ -129,9 +123,8 @@
                     <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid"
                                                                      src="assets/img/building.jpg"></a></div>
                     <div class="col">
-                        <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
-                            Praesent aliquam in tellus eu gravida.</p>
+                        <h3 class="name">Playing the guitar</h3>
+                        <p class="description">Video tutorials</p>
                     </div>
                 </div>
             </div>
@@ -140,9 +133,8 @@
                     <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="assets/img/loft.jpg"></a>
                     </div>
                     <div class="col">
-                        <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
-                            Praesent aliquam in tellus eu gravida.</p>
+                        <h3 class="name">English Grammar </h3>
+                        <p class="description">All rules of english language</p>
                     </div>
                 </div>
             </div>
@@ -151,9 +143,8 @@
                     <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid"
                                                                      src="assets/img/minibus.jpeg"></a></div>
                     <div class="col">
-                        <h3 class="name">Project Name</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus.
-                            Praesent aliquam in tellus eu gravida.</p>
+                        <h3 class="name">Web programming</h3>
+                        <p class="description">Html + css + js</p>
                     </div>
                 </div>
             </div>
@@ -171,18 +162,15 @@
                 <div class="col-sm-6 col-md-3 item">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="#">Company</a></li>
                         <li><a href="#">Team</a></li>
-                        <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
                 <!-- End: About -->
                 <!-- Start: Footer Text -->
                 <div class="col-md-6 item text">
                     <h3>Lectio</h3>
-                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula
-                        rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel
-                        in justo.</p>
+                    <p>Educational video platform
+                    </p>
                 </div>
                 <!-- End: Footer Text -->
                 <!-- Start: Social Icons -->

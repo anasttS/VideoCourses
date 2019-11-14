@@ -2,6 +2,7 @@ package pages;
 
 import BL.ChannelService;
 import BL.UserService;
+import UILogic.ForNavbar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,27 +16,28 @@ import java.io.IOException;
         maxRequestSize = 1024 * 1024 * 100)
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
+    private ForNavbar forNavbar = new ForNavbar();
     private UserService userService = new UserService();
     private ChannelService channelService = new ChannelService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("auth", req.getSession().getAttribute("current_user"));
-        req.setAttribute("username", userService.getUsernameByEmail((String) req.getSession().getAttribute("current_user")));
-        req.setAttribute("email", (String) req.getSession().getAttribute("current_user"));
-        req.setAttribute("birthDate", userService.getbirthDateByEmail((String) req.getSession().getAttribute("current_user")) + "");
-        req.setAttribute("img", userService.getImgByEmail((String) req.getSession().getAttribute("current_user")));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/profile.jsp");
-        dispatcher.forward(req, resp);
+        forNavbar.authUser(req);
+        if (req.getSession().getAttribute("current_user") != null) {
+            req.setAttribute("email", (String) req.getSession().getAttribute("current_user"));
+            req.setAttribute("birthDate", userService.getbirthDateByEmail((String) req.getSession().getAttribute("current_user")) + "");
+            req.setAttribute("img", userService.getImgByEmail((String) req.getSession().getAttribute("current_user")));
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/profile.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("/login");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = channelService.getIdByName(channelService.findNameofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
-        channelService.sendToCreatingChannel(id, req, resp);
-      userService.edit(req, resp);
-      userService.delete(req, resp);
-
-
+        channelService.sendToCreatingChannel(req, resp);
+        userService.edit(req, resp);
+        userService.delete(req, resp);
     }
 }

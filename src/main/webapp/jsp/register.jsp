@@ -19,115 +19,104 @@
             crossorigin="anonymous"></script>
     <title>Register</title>
 </head>
-<body>
+<body style="background-image: url(/assets/img/bg5.jpg);">
 <%@ include file="/jsp/navbar.jsp" %>
+
+
 <div class="container-fluid">
     <br>
     <br>
-    <diw class="row">
-        <div class="col"></div>
-        <div class="col-md-3" align="center">
-            <span><h1>Register</h1></span>
-            <span>And improve yourself</span>
-            <br>
-            <br>
-            <br>
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="inputUsername">Username</label>
-                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username" name="username">
-                </div>
-                ${message}
-                <div class="form-group">
-                    <label for="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="example-date-input">Birth Date</label>
-                    <input class="form-control" type="date" id="example-date-input" name="birthDate">
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="preview" name="fileP">
-                    <label class="custom-file-label" for="preview">Add your photo</label>
-                </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-5" align="center">
+            <div class="add-video-card" style="background: rgba(255, 255, 255, 0.5);
+    color: #495057;">
+                <span><h1>Register</h1></span>
+                <span>And improve yourself</span>
                 <br>
-                <hr>
-                <span><h6>Choose you interests</h6></span>
-                <!-- Default inline 1-->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultInline1" name="Interest1" value="IT">
-                    <label class="custom-control-label" for="defaultInline1">IT</label>
-                </div>
-
-                <!-- Default inline 2-->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultInline2" name="Interest2" value="Math">
-                    <label class="custom-control-label" for="defaultInline2">Math</label>
-                </div>
-
-                <!-- Default inline 3-->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultInline3" name="Interest3" value="Music">
-                    <label class="custom-control-label" for="defaultInline3">Music</label>
-                </div>
-
-                <!-- Default inline 4-->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultInline4" name="Interest4" value="Business">
-                    <label class="custom-control-label" for="defaultInline3">Business</label>
-                </div>
-
-                <!-- Default inline 5-->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultInline5" name="Interest5" value="English">
-                    <label class="custom-control-label" for="defaultInline3">English</label>
-                </div>
-                <%--<div class="form-check">--%>
-                    <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck1">--%>
-                    <%--<label class="form-check-label" for="InterestCheck1">--%>
-                        <%--Interest--%>
-                    <%--</label>--%>
-                <%--</div>--%>
-                <%--<div class="form-check">--%>
-                    <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck2">--%>
-                    <%--<label class="form-check-label" for="InterestCheck2">--%>
-                        <%--Interest--%>
-                    <%--</label>--%>
-                <%--</div>--%>
-                <%--<div class="form-check">--%>
-                    <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck3">--%>
-                    <%--<label class="form-check-label" for="InterestCheck3">--%>
-                        <%--Interest--%>
-                    <%--</label>--%>
-                <%--</div>--%>
-                <%--<div class="form-check">--%>
-                    <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck4">--%>
-                    <%--<label class="form-check-label" for="InterestCheck4">--%>
-                        <%--Interest--%>
-                    <%--</label>--%>
-                <%--</div>--%>
-                <%--<div class="form-check">--%>
-                    <%--<input class="form-check-input" type="checkbox" value="" id="InterestCheck5">--%>
-                    <%--<label class="form-check-label" for="InterestCheck5">--%>
-                        <%--Interest--%>
-                    <%--</label>--%>
-                <%--</div>--%>
                 <br>
-                <button type="submit" class="btn btn-primary" name="register">Submit</button>
-            </form>
+                <br>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter username"
+                               name="username">
+                    </div>
+                    ${message}
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" oninput="checkPassword()" class="form-control" id="inputPassword"
+                               placeholder="Password"
+                               name="password">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="date" id="example-date-input" name="birthDate">
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="preview" name="fileP">
+                        <label class="custom-file-label" for="preview">Add your photo</label>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <div class="card-body__text-info" style="color: #000000; font-size: 16px">
+                            Your password should follow requirements:
+                            <ul>
+                                <li id="passwordLengthError">
+                                    Password should be at least 8 characters long
+                                </li>
+                                <li id="passwordContainUpperCaseLetterError">
+                                    Password should contain at least 1 letter
+                                </li>
+                                <li id="passwordContainNumberError">
+                                    Password should contain at least 1 number
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="register">Register</button>
+                </form>
+            </div>
         </div>
         <div class="col"></div>
-    </diw>
+    </div>
 </div>
 <br>
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Video Courses</small>
-    </div>
-</footer>
+<script>
+    function checkPassword() {
+        var password = document.getElementById('inputPassword').value;
+        var passwordLengthError = document.getElementById('passwordLengthError');
+        var passwordContainUpperCaseLetterError = document.getElementById('passwordContainUpperCaseLetterError');
+        var passwordContainNumberError = document.getElementById('passwordContainNumberError');
+        var confirmPassword = document.getElementById('confirmPassword');
+        var cond1 = false;
+        var cond2 = false;
+        var cond3 = false;
+        console.log(password);
+        if (password.length < 8) {
+            passwordLengthError.style.color = "red";
+            cond1 = false;
+        } else {
+            passwordLengthError.style.color = "green";
+            cond1 = true;
+        }
+        if (password.toString().search(/[A-Za-z]/) === -1) {
+            passwordContainUpperCaseLetterError.style.color = "red";
+            cond2 = false;
+        } else {
+            passwordContainUpperCaseLetterError.style.color = "green";
+            cond2 = true;
+        }
+        if (password.toString().search(/\d/) === -1) {
+            passwordContainNumberError.style.color = "red";
+            cond3 = false;
+        } else {
+            passwordContainNumberError.style.color = "green";
+            cond3 = true;
+        }
+    }
+
+</script>
 </body>
 </html>

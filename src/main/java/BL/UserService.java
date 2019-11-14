@@ -1,6 +1,8 @@
 package BL;
 
+import DAO.InterestDAO;
 import DAO.UserDAO;
+import UILogic.HashPassword;
 import UILogic.MediaAdd;
 import UILogic.UICookieLogic;
 import models.User;
@@ -16,14 +18,16 @@ import java.util.Arrays;
 public class UserService {
 
     UserDAO dao = new UserDAO();
+    InterestDAO interestDAO = new InterestDAO();
     UICookieLogic logic = new UICookieLogic();
+    HashPassword hashPassword = new HashPassword();
 
     public int getIdByEmail(String email) {
         try {
             int id = dao.findIDofUser(email);
             return id;
         } catch (NullPointerException e) {
-            System.out.println("Exception");
+            System.out.println("Exception during get id by user's email");
         }
         return 0;
     }
@@ -33,7 +37,7 @@ public class UserService {
             User user = dao.getUserByEmail(email);
             return user.getUsername();
         } catch (NullPointerException e) {
-            System.out.println("Exception");
+            System.out.println("Exception during get username by email");
         }
         return null;
     }
@@ -43,7 +47,7 @@ public class UserService {
             User user = dao.getUserByEmail(email);
             return user.getBirthDate();
         } catch (NullPointerException e) {
-            System.out.println("Exception");
+            System.out.println("Exception during get birthDate by email");
         }
         return null;
     }
@@ -52,18 +56,17 @@ public class UserService {
             User user = dao.getUserByEmail(email);
             return user.getImg();
         } catch (NullPointerException e) {
-            System.out.println("Exception during getImg");
+            System.out.println("Exception during getImg by Email ");
         }
         return null;
     }
     public int getChannelIdByEmail(String email) {
-            int channel_id = dao.getChannelIdOfUser(email);
-        return channel_id;
+        return dao.getChannelIdOfUser(email);
     }
 
     public void login(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
         try {
-            if (dao.userIsExist(email, password.hashCode())) {
+            if (dao.userIsExist(email, hashPassword.getHashPassword(password))) {
                 logic.addCookie(req, resp, email);
                 resp.sendRedirect("/profile");
             } else {
@@ -72,7 +75,7 @@ public class UserService {
                 dispatcher.forward(req, resp);
             }
         } catch (IOException e) {
-            System.out.println();
+            System.out.println("Exception during login");
             throw new IllegalArgumentException();
         } catch (ServletException e) {
             e.printStackTrace();
@@ -82,14 +85,10 @@ public class UserService {
     public void register(HttpServletRequest req, HttpServletResponse resp) {
         String email = req.getParameter("email");
         String username = req.getParameter("username");
-        int password = req.getParameter("password").hashCode();
+        String password = req.getParameter("password");
+        String passwordHash = hashPassword.getHashPassword(password);
         LocalDate birthDate = LocalDate.parse(req.getParameter("birthDate"));
-        String interest1 = req.getParameter("Interest1");
-        String interest2 = req.getParameter("Interest2");
-        String interest3 = req.getParameter("Interest3");
-        String interest4 = req.getParameter("Interest4");
-        String interest5 = req.getParameter("Interest5");
-        String[] interests = {interest1, interest2, interest3, interest4, interest5};
+
         MediaAdd m = new MediaAdd();
         String img;
         try {
@@ -104,15 +103,13 @@ public class UserService {
                     req.setAttribute("message", "This email already exists. Please try again.");
                     req.getRequestDispatcher("/jsp/register.jsp").forward(req, resp);
                 } else {
-                    dao.saveUser(new User(email, username, password, birthDate, Arrays.toString(interests), img));
+                    dao.saveUser(new User(email, username, passwordHash, birthDate, img));
                     resp.sendRedirect("/login");
                 }
             }
-        } catch (IOException e) {
-            System.out.println();
+        } catch (IOException | ServletException e2) {
+            System.out.println("Exception during register user");
             throw new IllegalArgumentException();
-        } catch (ServletException e) {
-            e.printStackTrace();
         }
     }
 
@@ -120,10 +117,18 @@ public class UserService {
         try {
             if (req.getParameter("save") != null) {
                 dao.updateData(req.getParameter("username"), LocalDate.parse(req.getParameter("birthDate")), (String) req.getSession().getAttribute("current_user"));
+                int id_user = getIdByEmail((String) req.getSession().getAttribute("current_user"));
+                for (int i = 1; i <= 5; i++) {
+                    String interest = req.getParameter("Interest" + i);
+                    if (interest != null){
+                        interestDAO.addInterest(id_user, interest);
+                    }
+                }
+
                 resp.sendRedirect("/profile");
             }
         } catch (IOException e) {
-            System.out.println();
+            System.out.println("Exception during edit profile");
             throw new IllegalArgumentException();
         }
     }
@@ -137,7 +142,7 @@ public class UserService {
             try {
                 resp.sendRedirect("/main");
             } catch (IOException e) {
-                System.out.println();
+                System.out.println("Exception during delete account");
                 throw new IllegalArgumentException();
             }
         }
@@ -158,7 +163,7 @@ public class UserService {
             try {
                 resp.sendRedirect("/profile");
             } catch (IOException e) {
-                System.out.println();
+                System.out.println("Exception during add user photo");
                 throw new IllegalArgumentException();
             }
         }

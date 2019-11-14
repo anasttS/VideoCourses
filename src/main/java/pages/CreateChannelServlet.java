@@ -25,6 +25,8 @@ public class CreateChannelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("auth", req.getSession().getAttribute("current_user"));
+        req.setAttribute("username", userService.getUsernameByEmail((String) req.getSession().getAttribute("current_user")));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/createChannel.jsp");
         dispatcher.forward(req, resp);
     }

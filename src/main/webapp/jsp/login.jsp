@@ -9,6 +9,7 @@
     <link href="css/bootstrap-grid.css" rel="stylesheet">
     <link href="css/bootstrap-reboot.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atomic+Age|Monoton|Raleway:900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -20,7 +21,7 @@
             crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
-<body>
+<body style="background-image: url(/assets/img/bg3.jpg);">
 <%@ include file="/jsp/navbar.jsp" %>
 <div class="container-fluid">
     <br>
@@ -28,37 +29,35 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
-            <span><h1>Login</h1></span>
-            <span>And improve yourself</span>
-            <br>
-            <br>
-            <br>
-            <form method="post">
-                ${message}
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div class="add-video-card" style="background: rgba(255, 255, 255, 0.5);
+    color: #495057;">
+                <span><h1><b>Login</b></h1></span>
+                <span><b>And improve yourself</b></span>
+                <br>
+                <br>
+                <br>
+                <form method="post">
+                    ${message}
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                               name="password">
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="rememberMe">
+                        <label class="custom-control-label" for="exampleCheck1"><b>Remember me</b></label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
         </div>
         <div class="col"></div>
     </div>
 </div>
 <br>
-
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Video Courses</small>
-    </div>
-</footer>
 </body>
 </html>

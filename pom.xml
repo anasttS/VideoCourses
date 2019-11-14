@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>itis_sem1</groupId>
-    <artifactId>semestr</artifactId>
+    <groupId>itis_sem</groupId>
+    <artifactId>itis_sem3</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -30,6 +30,15 @@
             <version>8.0.17</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -45,8 +54,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
-
 </project>

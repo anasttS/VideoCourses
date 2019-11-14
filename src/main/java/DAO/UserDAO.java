@@ -15,10 +15,10 @@ public class UserDAO {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return new User(resultSet.getString("email"), resultSet.getString("username"), resultSet.getInt("password"), LocalDate.parse(resultSet.getString("birthDate")), resultSet.getString("interests"), resultSet.getString("img_user"));
+                return new User(resultSet.getString("email"), resultSet.getString("username"), resultSet.getString("password"), LocalDate.parse(resultSet.getString("birthDate")), resultSet.getString("img_user"));
             }
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during get user by email");
             throw new IllegalArgumentException();
         }
         return null;
@@ -33,7 +33,7 @@ public class UserDAO {
                 return resultSet.getInt("own_channel");
             }
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during get channel by email");
             throw new IllegalArgumentException();
         }
         return 0;
@@ -46,20 +46,19 @@ public class UserDAO {
             statement.setString(2, email);
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during add img in profile");
             throw new IllegalArgumentException();
         }
     }
 
     public void saveUser(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (email, username, password, birthDate, interests, img_user) VALUES (?, ?, ?, ?, ?, ?) ");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (email, username, password, birthDate, img_user) VALUES (?, ?, ?, ?, ?) ");
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getUsername());
-            statement.setInt(3, user.getPassword());
+            statement.setString(3, user.getPassword());
             statement.setString(4, user.getBirthDate().toString());
-            statement.setString(5, user.getInterests());
-            statement.setString(6, user.getImg());
+            statement.setString(5, user.getImg());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception during saveUser");
@@ -73,7 +72,7 @@ public class UserDAO {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                users.add(new User(resultSet.getString("email"), resultSet.getString("username"), resultSet.getInt("password"), LocalDate.parse(resultSet.getString("birthDate")), resultSet.getString("interests")));
+                users.add(new User(resultSet.getString("email"), resultSet.getString("username"), resultSet.getString("password"), LocalDate.parse(resultSet.getString("birthDate")), resultSet.getString("interests")));
             }
             return users;
         } catch (SQLException e) {
@@ -103,17 +102,17 @@ public class UserDAO {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = " + id);
              statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Exception during delete");
+            System.out.println("Exception during delete User");
             throw new IllegalArgumentException();
         }
 
     }
 
-    public boolean userIsExist(String email, int password) {
+    public boolean userIsExist(String email, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
             statement.setString(1, email);
-            statement.setInt(2, password);
+            statement.setString(2, password);
             if (statement.executeQuery().next()) {
                 return true;
             }
@@ -146,7 +145,7 @@ public class UserDAO {
             statement.setString(3, email);
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during update data");
             throw new IllegalArgumentException();
         }
     }
@@ -158,22 +157,9 @@ public class UserDAO {
             statement.setString(2, email);
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during create channel");
             throw new IllegalArgumentException();
         }
     }
-
-
-//    public static boolean checkPermission(String nameOfRight) {
-//        try {
-//            if ((stmt.executeQuery("SELECT * FROM users WHERE right = \"" + nameOfRight + "\"")).next()) {
-//                return true;
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("Exception during checkPermission");
-//            throw new  IllegalArgumentException();
-//        }
-//        return false;
-//    }
 
 }

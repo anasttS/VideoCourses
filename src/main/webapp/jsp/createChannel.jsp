@@ -15,6 +15,7 @@
     <link href="css/bootstrap-grid.css" rel="stylesheet">
     <link href="css/bootstrap-reboot.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atomic+Age|Monoton|Raleway:900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -26,48 +27,39 @@
             crossorigin="anonymous"></script>
     <title>Channel</title>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo" href="<c:url value="/main"/>">Lectio</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
+<body style="background-image: url(/assets/img/bg1.jpg);">
+<%@ include file="/jsp/navbar.jsp" %>
 <div class="container-fluid">
     <br>
     <br>
-    <diw class="row">
+    <div class="row">
         <div class="col"></div>
         <div class="col-md-3" align="center">
-            <span><h1>Create channel</h1></span>
-            <br>
-            <br>
-            <br>
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name"  placeholder="Enter name" name="nameOfChannel">
-                </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="description"  placeholder="Enter description" name="nameOfChannel">
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="preview" name="fileP">
-                    <label class="custom-file-label" for="preview">Add photo of channel</label>
-                </div>
-                <button type="submit" class="btn btn-primary" name="createChannel">Submit</button>
-            </form>
+            <div class="add-video-card" style="background: rgba(255, 255, 255, 0.5);
+    color: #495057;">
+                <span><h1><b>Create channel</b></h1></span>
+                <br>
+                <br>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name"  placeholder="Enter name" name="nameOfChannel">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="description"  placeholder="Enter description" name="nameOfChannel">
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="preview" name="fileP">
+                        <label class="custom-file-label" for="preview">Add photo</label>
+                    </div>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="createChannel">Create channel</button>
+                </form>
+            </div>
         </div>
         <div class="col"></div>
-    </diw>
+    </div>
 </div>
 <br>
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Video Courses</small>
-    </div>
-</footer>
 </body>
 </html>

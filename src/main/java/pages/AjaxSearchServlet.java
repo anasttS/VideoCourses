@@ -1,6 +1,6 @@
 package pages;
 
-import DAO.FindDAO;
+import BL.VideoService;
 
 import models.Video;
 import org.json.JSONArray;
@@ -12,44 +12,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
-@WebServlet("/dosearch")
+@WebServlet("/doSearch")
 public class AjaxSearchServlet extends HttpServlet {
-    FindDAO findDAO = new FindDAO();
+    private VideoService videoService = new VideoService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String query = req.getParameter("query");
         String searchParam = req.getParameter("search_param");
-        List<Video> videos = null;
+        ArrayList<Video> videos = new ArrayList<>();
         switch (searchParam){
-            case "all":
-                videos = findDAO.getAllByAll(query);
-                break;
             case "video":
-                videos = findDAO.getNoteBySearch(query);
+                videos = videoService.getVideosByVideoname(query);
                 break;
             case "username":
-                videos = findDAO.getAllByUserName(query);
+                videos = videoService.getVideoByUserName(query);
                 break;
-            case "channel":
-                videos = findDAO.getAllByChannelName(query);
+            case "channelName":
+                videos = videoService.getVideoByChannelName(query);
                 break;
         }
 
         JSONArray ja = new JSONArray();
-        for (Video note: videos) {
-            ja.put(new JSONObject(note));
+        for (Video video: videos) {
+            ja.put(new JSONObject(video));
         }
         JSONObject jo = new JSONObject();
-        jo.put("objects", ja);
+        jo.put("videos", ja);
 
         resp.setContentType("text/json");
         resp.getWriter().write(jo.toString());
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
     }
 }

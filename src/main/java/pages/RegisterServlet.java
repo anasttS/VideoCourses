@@ -21,7 +21,7 @@ import java.util.Arrays;
         maxRequestSize = 1024 * 1024 * 100)
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    UserService userService = new UserService();
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

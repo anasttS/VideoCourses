@@ -25,7 +25,6 @@
 <%@ include file="/jsp/navbar.jsp" %>
 <br>
 <p> You have logged out!</p>
-<a href="/login"> Login </a>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright &copy; Video Courses</small>

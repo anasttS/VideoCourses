@@ -5,6 +5,15 @@ public class Note {
     private String text;
     private int id_user;
     private int id_video;
+    private String videoName;
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
 
     public Note(int id, String text, int id_user, int id_video) {
         this.id = id;

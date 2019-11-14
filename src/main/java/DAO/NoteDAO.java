@@ -9,27 +9,9 @@ public class NoteDAO{
 
     private static Connection connection = ConnectionProvider.getConnection();
 
-//    public int findIdOfNote(int id){
-//        try {
-//            int id_note = 0;
-//            PreparedStatement statement = connection.prepareStatement("SELECT * FROM notes WHERE id = ?");
-//
-//            statement.setInt(1, id);
-//
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                id_note = resultSet.getInt("id");
-//            }
-//            return id_note;
-//        } catch (SQLException e) {
-//            System.out.println("Exception during findIDofNote");
-//            throw new IllegalArgumentException();
-//        }
-//    }
-
     public  void saveNoteBD(Note note) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO note (text, id_user, id_video) VALUES (?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO note (text, id_user, video_id) VALUES (?, ?, ?)");
             statement.setString(1, note.getText());
             statement.setInt(2, note.getId_user());
             statement.setInt(3, note.getId_video());
@@ -48,7 +30,7 @@ public class NoteDAO{
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println();
+            System.out.println("Exception during update data in note");
             throw new IllegalArgumentException();
         }
     }
@@ -65,7 +47,20 @@ public class NoteDAO{
         }
     }
 
-
+    public Note findNoteById(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM note WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Note(resultSet.getInt("id"),resultSet.getString("text"), resultSet.getInt("id_user"), resultSet.getInt("video_id"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception during find note");
+            throw new IllegalArgumentException();
+        }
+        return null;
+    }
 
     public  ArrayList<Note> getNotesArrByUserID(int user_id) {
         ArrayList<Note> videos = new ArrayList<>();
@@ -73,7 +68,7 @@ public class NoteDAO{
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM note WHERE id_user = " + user_id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                videos.add(new Note(resultSet.getInt("id"),resultSet.getString("text"), resultSet.getInt("id_user"), resultSet.getInt("id_video")));
+                videos.add(new Note(resultSet.getInt("id"),resultSet.getString("text"), resultSet.getInt("id_user"), resultSet.getInt("video_id")));
             }
             return videos;
         } catch (SQLException e) {

@@ -27,26 +27,19 @@
 
 <div class="container-fluid">
     <div class="row">
-        <c:forEach var="note" items="${notes}">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="card-container">
-                    <div class="d-flex flex-wrap">
-
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card-container">
+                <div class="d-flex flex-wrap">
+                    <c:forEach var="note" items="${notes}">
                         <div class="card" style="width: 17rem;">
                             <div class="card-body">
-                                <h5 class="card-title">${note.id}</h5>
+                                <h5 class="card-title">${video.name}</h5>
                                 <p class="card-text"> ${note.text}</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <button type="button" name="seeNote" class="btn btn-primary" data-toggle="modal"
                                         data-target="#note${note.id}">
                                     See note
                                 </button>
-                                <form method="post" action="/notes">
-                                    <button id="delete" class="btn btn-secondary" data-dismiss="modal"
-                                            name="delete" value="${note.id}">
-                                        Delete
-                                    </button>
-                                </form>
                                 <a href="<c:url value="/video?id=${note.id_video}"/>" class="card-link">Video</a>
                             </div>
                         </div>
@@ -72,16 +65,21 @@
                                                     value="${note.id}">
                                                 Save
                                             </button>
+                                            <button type="submit" class="btn btn-secondary" name="delete"
+                                                    value="${note.id}">
+                                                Delete
+                                            </button>
                                         </div>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
-            <div class="col-md-2"></div>
-        </c:forEach>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">

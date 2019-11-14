@@ -8,21 +8,6 @@ import java.sql.*;
 public class ChannelDAO {
     private static Connection connection = ConnectionProvider.getConnection();
 
-
-//    public static ArrayList<Channel> getChannelsArrFromUser(int owner_id) {
-//        ArrayList<Channel> channels = new ArrayList<>();
-//        String sql = ("SELECT * FROM channel WHERE owner_id = " + owner_id + "");
-//        System.out.println(sql);
-//        try {
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                channels.add(new Channel(rs.getInt("owner_id"), rs.getString("name"), rs.getInt("playlist")));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return channels;
-//    }
 public boolean channelIsExist(int user_id) {
     try {
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE owner_id = ?");
@@ -45,7 +30,7 @@ public boolean channelIsExist(int user_id) {
             statement.setString(3, channel.getImg());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Exception during saveVideo");
+            System.out.println("Exception during create channel");
             throw new IllegalArgumentException();
         }
     }
@@ -117,7 +102,7 @@ public boolean channelIsExist(int user_id) {
             }
             return img;
         } catch (SQLException e) {
-            System.out.println("Exception during findNameOfChannelByUserId");
+            System.out.println("Exception during findImgOfChannelByUserId");
             throw new IllegalArgumentException();
         }
     }

@@ -9,8 +9,12 @@
     <link href="css/bootstrap-reboot.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Atomic+Age|Monoton|Raleway:900&display=swap" rel="stylesheet">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -20,100 +24,111 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script type="application/javascript"
+            src="js/jquery-1.9.1.js"></script>
+
     <title>Videos</title>
 </head>
 <body>
 <%@ include file="/jsp/navbar.jsp" %>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <form action="/videos" method="get" id="searchForm" class="input-group" class="channel-header">
-                <div class="input-group-btn search-panel">
-                    <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown" onfocus="">
-                        <option value="all">All</option>
-                        <option value="video">Video</option>
-                        <option value="username">Username</option>
-                        <option value="channel">Channel</option>
-                    </select>
-                </div>
-                <input type="text" class="form-control mr-sm-2" name="x" id="query" oninput="f()"
-                       placeholder="Search term...">
-                <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit"> Search
-                           <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </form>
-        </div>
-        <script type="application/javascript">
-            function f() {
-                if ($("#query").val().length >= 1) {
-                    $.ajax({
-                        url: "/dosearch",
-                        data: {"query": $("#query").val(), "search_param": $("#search_param").val()},
-                        dataType: "json",
-                        success: function (msg) {
-                            if (msg.objects.length > 0) {
-                                $("#res").html("");
-                                for (var i = 0; i < msg.objects.length; i++) {
-                                    var o = msg.objects[i];
-                                    var id = o.id;
-                                    var preview = o.preview;
-                                    var name = o.name;
-                                    var date = o.date;
-                                    var description = o.description;
 
-                                    $("#res").append("<div class=\"sidebar\"><div class=\"inner-sidebar\"><table><tr><td><img src=\'" + preview + "\'></td><tr>" +
-                                        "<td>Title:</td><td><form action=\"/video\" method=\"post\"><button name=\"id\" value=\"" + id + "\">" + name + "</button></form></td><tr>" +
-                                        "<td>Date:</td><td>" + date + "</td></tr>" +
-                                        "<tr><td>Description:</td><td>" + description + "</td></tr></table></div></div>");
 
-                                }
-                            } else {
-                                $("#res").html("No results..");
+<form action="<c:url value="/videos"/>" method="get" id="searchForm" class="channel-header">
+    <div class="input-group-btn search-panel">
+        <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" onfocus="">
+            <option value="video">Video</option>
+            <option value="username">Username</option>
+            <option value="channelName">ChannelName</option>
+        </select>
+    </div>
+    <input type="text" class="form-control mr-sm-2" name="x" id="query" oninput="f()"
+           placeholder="Search term...">
+    <%--<button class="btn btn-default" type="submit" name="search"> Search--%>
+    <%--</button>--%>
+</form>
+<%--<%String t = "true";%>--%>
+<%--<div id="b" value="false"></div>--%>
+<script type="application/javascript">
+
+    function f() {
+        if ($("#query").val().length >= 1) {
+            $.ajax({
+                    url: "/doSearch",
+                    data: {"query": $("#query").val(), "search_param": $("#search_param").val()},
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.videos.length > 0) {
+                            // var t = document.getElementById("b");
+                            // window.location.replace("videoPage.jsp?t="+t);
+                            $("#res").html("");
+                            for (var i = 0; i < msg.videos.length; i++) {
+                                var o = msg.videos[i];
+                                var id_video = o.id;
+                                var img = o.img;
+                                var name = o.name;
+                                var description = o.description;
+
+                                $("#res").append("<div class=\"channel-container\">\n" +
+                                    "    <div class=\"card-container\">\n" +
+                                    "        <div class=\"d-flex flex-wrap\"> <div class=\"card\" style=\"width: 18rem;\">\n" +
+                                    "                    <img src=\"" + img + "\" class=\"card-img-top\" alt=\"...\">\n" +
+                                    "                    <div class=\"card-body\">\n" +
+                                    "                        <h5 class=\"card-title\">" + name + "</h5>\n" +
+                                    "                        <p class=\"card-text\">" + description + "</p>\n" +
+                                    "                        <form action=\"/video\" method=\"get\">\n" +
+                                    "                            <button type=\"submit\" class=\"btn btn-primary\" value=\"" + id_video + "\" name=\"id\">\n" +
+                                    "                                Watch video\n" +
+                                    "                            </button>\n" +
+                                    "                        </form>\n" +
+                                    "                    </div>\n" +
+                                    "                </div> </div> </div> </div>");
                             }
+                        } else {
+                            $("#res").html("No results..");
                         }
-                    })
-                } else {
-                    $("#res").html("");
+                    }
                 }
-            }
-        </script>
-        <%--<p><input id="query" oninput="f()"/></p>--%>
+            )
+        } else {
+            $("#res").html("");
+        }
+    }
+</script>
+
+<div id="res"></div>
+
+<%--<% t = request.getParameter("t");--%>
+<%--if (t.equals(true)) {%>--%>
+<div class="features-clean">
+    <div class="intro">
+        <h2 class="text-center">All videos: </h2>
     </div>
 </div>
-
-
-<div class="container-fluid">
-    <div class="row">
-        <c:forEach var="video" items="${videos}">
-            <div class="channel-container">
-                <div class="card-container">
-                    <div class="d-flex flex-wrap">
-
-                        <!--Карточка-->
-                        <div class="card" style="width: 18rem;">
-                            <img src="${video.img}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">${video.name}</h5>
-                                <p class="card-text">${video.description}...</p>
-                                <form action="/video" method="get">
-                                    <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id">
-                                        Watch video
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-
+<div class="channel-container">
+    <div class="card-container">
+        <div class="d-flex flex-wrap">
+            <c:forEach var="video" items="${videos}">
+                <!--Карточка-->
+                <div class="card" style="width: 18rem;">
+                    <img src="${video.img}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${video.name}</h5>
+                        <p class="card-text">${video.description}</p>
+                        <form action="/video" method="get">
+                            <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id">
+                                Watch video
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-
+            </c:forEach>
+        </div>
     </div>
+
 </div>
+</div>
+<%--<%}%>--%>
 <br>
 <br>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
@@ -123,6 +138,7 @@
 </footer>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 <script src="assets/js/Simple-Slider.js"></script>
 </body>

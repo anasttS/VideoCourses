@@ -14,10 +14,6 @@ public class NoteService {
     NoteDAO noteDAO = new NoteDAO();
     UserDAO userDAO = new UserDAO();
 
-//    public String getVideonameByUserID(int id_video) {
-//        return videoDAO.getVideonameByID(id_video);
-//    }
-
 
     public void saveNote(int id_video, HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();

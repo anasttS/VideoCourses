@@ -76,10 +76,10 @@
                         <span>${video.views} views | ${video.upload_date}</span>
                     </div>
                     <div class="col-md-6 d-flex flex-row-reverse align-items-center">
-                        <button type="button" class="btn btn-primary btn-sm" style="margin-left: 10px;">Add in
-                            favorite
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm">Like</button>
+                        <form method="post" action="/video">
+                            <input type="hidden" name="id" value="${video.id_video}">
+                        <button type="submit" class="btn btn-primary btn-sm" name="like">Like</button>
+                        </form>
                         <span class="likes-count">${video.likes} Likes</span>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                                                       name="noteText"></textarea>
                         <input type="hidden" name="id" value="${video.id_video}">
                         <button name="save" class="btn btn-primary" type="submit" style="margin: 0px;margin-top: 20px;">
-                            Button
+                            Save note
                         </button>
                     </div>
                 </form>
