@@ -24,7 +24,7 @@ public class ChannelDAO {
 
     public void createChannel(Channel channel) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO channel (owner_id, name, img) VALUES (?, ?, ?) ");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO channel (owner_id, name_channel, img_channel) VALUES (?, ?, ?) ");
             statement.setInt(1, channel.getOwner_id());
             statement.setString(2, channel.getName());
             statement.setString(3, channel.getImg());
@@ -48,7 +48,7 @@ public class ChannelDAO {
     public int findIDofChannel(String name) {
         try {
             int id = 0;
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE name = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE name_channel = ?");
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -83,7 +83,7 @@ public class ChannelDAO {
             statement.setInt(1, owner_id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                name = resultSet.getString("name");
+                name = resultSet.getString("name_channel");
             }
             return name;
         } catch (SQLException e) {
@@ -98,7 +98,7 @@ public class ChannelDAO {
             statement.setInt(1, owner_id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                img = resultSet.getString("img");
+                img = resultSet.getString("img_channel");
             }
             return img;
         } catch (SQLException e) {
@@ -116,7 +116,7 @@ public class ChannelDAO {
             statement.setInt(1, id_video);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                name = resultSet.getString("name");
+                name = resultSet.getString("name_channel");
             }
             return name;
         } catch (SQLException e) {
@@ -132,7 +132,7 @@ public class ChannelDAO {
             statement.setInt(1, id_video);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                img = resultSet.getString("img");
+                img = resultSet.getString("img_channel");
             }
             return img;
         } catch (SQLException e) {

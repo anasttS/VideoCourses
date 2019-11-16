@@ -51,6 +51,13 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+
             </plugin>
         </plugins>
     </build>

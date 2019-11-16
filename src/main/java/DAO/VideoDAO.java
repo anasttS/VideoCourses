@@ -6,7 +6,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 public class VideoDAO {
     private static Connection connection = ConnectionProvider.getConnection();
@@ -259,7 +258,7 @@ public class VideoDAO {
         public ArrayList<Video> getVideoByChannelName(String query){
             ArrayList<Video> videos = new ArrayList<>();
             try {
-                PreparedStatement statement = connection.prepareStatement("        SELECT * FROM video LEFT JOIN channel ON video.channel_id = channel.id_ WHERE channel.name like ?");
+                PreparedStatement statement = connection.prepareStatement("        SELECT * FROM video LEFT JOIN channel ON video.channel_id = channel.id_ WHERE channel.name_channel like ?");
                 statement.setString(1, "%" + query + "%");
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()){
