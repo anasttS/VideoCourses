@@ -17,10 +17,10 @@ import java.util.Arrays;
 
 public class UserService {
 
-    UserDAO dao = new UserDAO();
-    InterestDAO interestDAO = new InterestDAO();
-    UICookieLogic logic = new UICookieLogic();
-    HashPassword hashPassword = new HashPassword();
+    private UserDAO dao = new UserDAO();
+    private InterestDAO interestDAO = new InterestDAO();
+    private UICookieLogic logic = new UICookieLogic();
+    private HashPassword hashPassword = new HashPassword();
 
     public int getIdByEmail(String email) {
         try {
@@ -74,11 +74,9 @@ public class UserService {
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/login.jsp");
                 dispatcher.forward(req, resp);
             }
-        } catch (IOException e) {
+        } catch (IOException | ServletException e) {
             System.out.println("Exception during login");
             throw new IllegalArgumentException();
-        } catch (ServletException e) {
-            e.printStackTrace();
         }
     }
 

@@ -8,19 +8,19 @@ import java.sql.*;
 public class ChannelDAO {
     private static Connection connection = ConnectionProvider.getConnection();
 
-public boolean channelIsExist(int user_id) {
-    try {
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE owner_id = ?");
-        statement.setInt(1, user_id);
-        if (statement.executeQuery().next()) {
-            return true;
+    public boolean channelIsExist(int user_id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE owner_id = ?");
+            statement.setInt(1, user_id);
+            if (statement.executeQuery().next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception during channelIsExist");
+            throw new IllegalArgumentException();
         }
-    } catch (SQLException e) {
-        System.out.println("Exception during channelIsExist");
-        throw new IllegalArgumentException();
+        return false;
     }
-    return false;
-}
 
     public void createChannel(Channel channel) {
         try {
@@ -61,7 +61,7 @@ public boolean channelIsExist(int user_id) {
         }
     }
 
-    public int findIDofChannelByUserID(int owner_id){
+    public int findIDofChannelByUserID(int owner_id) {
         try {
             int id = 0;
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM channel WHERE owner_id = ?");
@@ -102,11 +102,45 @@ public boolean channelIsExist(int user_id) {
             }
             return img;
         } catch (SQLException e) {
-            System.out.println("Exception during findImgOfChannelByUserId");
+            System.out.println("Exception during findNameOfChannelByUserId");
             throw new IllegalArgumentException();
         }
     }
 
+
+
+    public String findNameOfChannelByVideoId(int id_video) {
+        try {
+            String name = null;
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video LEFT JOIN channel ON video.channel_id = channel.id_ WHERE video.id_video = ?");
+            statement.setInt(1, id_video);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                name = resultSet.getString("name");
+            }
+            return name;
+        } catch (SQLException e) {
+            System.out.println("Exception during findNameOfChannelByVideoId");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public String findImgOfChannelByVideoId(int id_video) {
+        try {
+            String img = null;
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video LEFT JOIN channel ON video.channel_id = channel.id_ WHERE video.id_video = ?");
+            statement.setInt(1, id_video);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                img = resultSet.getString("img");
+            }
+            return img;
+        } catch (SQLException e) {
+            System.out.println("Exception during findImgOfChannelByVideoId");
+            throw new IllegalArgumentException();
+        }
+    }
 }
+
 
 

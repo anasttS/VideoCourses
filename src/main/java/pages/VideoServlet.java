@@ -23,7 +23,6 @@ import static java.lang.Integer.parseInt;
 public class VideoServlet extends HttpServlet {
     private ForNavbar forNavbar = new ForNavbar();
     private NoteService noteService = new NoteService();
-    private UserService userService = new UserService();
     private VideoService videoService = new VideoService();
     private CommentService commentService = new CommentService();
     private ChannelService channelService = new ChannelService();
@@ -33,10 +32,11 @@ public class VideoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         forNavbar.authUser(req);
         if (req.getSession().getAttribute("current_user") != null) {
+            req.setAttribute("videos", videoService.get7Videos());
             req.setAttribute("video", videoService.findVideoById(Integer.parseInt(req.getParameter("id"))));
             req.setAttribute("comments", commentService.getComments(Integer.parseInt(req.getParameter("id"))));
-            req.setAttribute("imgOfChannel", channelService.findImgOfChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
-            req.setAttribute("nameOfChannel", channelService.findNameofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
+            req.setAttribute("imgOfChannel", channelService.findImgOfChannelByVideoId(Integer.parseInt(req.getParameter("id"))));
+            req.setAttribute("nameOfChannel", channelService.findNameofChannelByIdVideo(Integer.parseInt(req.getParameter("id"))));
             videoService.increaseViews(Integer.parseInt(req.getParameter("id")));
             RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/video.jsp");
             dispatcher.forward(req, resp);

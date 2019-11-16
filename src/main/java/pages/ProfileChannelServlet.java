@@ -26,7 +26,7 @@ public class ProfileChannelServlet extends HttpServlet {
         forNavbar.authUser(req);
         if (channelService.channelIsExist(userService.getIdByEmail((String) req.getSession().getAttribute("current_user")))) {
             req.setAttribute("nameOfChannel", channelService.findNameofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
-            req.setAttribute("img", channelService.findImgOfChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
+            req.setAttribute("img", channelService.findImgofChannelByUserId(userService.getIdByEmail((String) req.getSession().getAttribute("current_user"))));
             req.setAttribute("videos", channelService.getVideosByChannelId(userService.getChannelIdByEmail((String) req.getSession().getAttribute("current_user"))));
             RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/channelProfile.jsp");
             dispatcher.forward(req, resp);

@@ -91,9 +91,18 @@ public class ChannelService {
         String name = channelDAO.findNameOfChannelByUserID(owner_id);
         return name;
     }
-
-    public String findImgOfChannelByUserId(int owner_id) {
+    public String findImgofChannelByUserId(int owner_id) {
         String img = channelDAO.findImgOfChannelByUserID(owner_id);
+        return img;
+    }
+
+    public String findNameofChannelByIdVideo(int video_id) {
+        String name = channelDAO.findNameOfChannelByVideoId(video_id);
+        return name;
+    }
+
+    public String findImgOfChannelByVideoId(int video_id) {
+        String img = channelDAO.findImgOfChannelByVideoId(video_id);
         return img;
     }
 

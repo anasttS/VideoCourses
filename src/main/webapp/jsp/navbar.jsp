@@ -5,6 +5,7 @@
   Time: 14:29
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -33,47 +34,9 @@
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-
-            <%--<li class="nav-item">--%>
-            <%--<a class="nav-link text-white" href="#">Pricing</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item dropdown">--%>
-            <%--<a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink-3333" data-toggle="dropdown"--%>
-            <%--aria-haspopup="true" aria-expanded="false">Dropdown--%>
-            <%--</a>--%>
-            <%--<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3333">--%>
-            <%--<a class="dropdown-item" href="#">Action</a>--%>
-            <%--<a class="dropdown-item" href="#">Another action</a>--%>
-            <%--<a class="dropdown-item" href="#">Something else here</a>--%>
-            <%--</div>--%>
-            <%--</li>--%>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <c:if test="${auth != null}">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" id="main" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                            ${username}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                         aria-labelledby="profile">
-                        <a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a>
-                        <a class="dropdown-item" href="<c:url value="/channelProfile"/>">Channel</a>
-                        <a class="dropdown-item" href="<c:url value="/notes"/>">My notes</a>
-                        <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
-                    </div>
-                </li>
-            </c:if>
-            <c:if test="${auth == null}">
-                <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item">
-                        <a href="<c:url value="/login"/>" class="nav-link text-white">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<c:url value="/register"/>" class="nav-link text-white">Register</a>
-                    </li>
-                </ul>
-            </c:if>
+            <tag:navbar/>
         </ul>
     </div>
 </nav>

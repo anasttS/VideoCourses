@@ -88,6 +88,10 @@ public class VideoService {
         return videoDAO.getVideoArr();
     }
 
+    public ArrayList<Video> get7Videos() {
+        return videoDAO.get7VideoArr();
+    }
+
     public ArrayList<Video> getVideosByVideoname(String name) {
         return videoDAO.getVideoByVideoName(name);
     }
@@ -99,6 +103,7 @@ public class VideoService {
     public ArrayList<Video> getVideosByUserInterests(int id_user) {
         return videoDAO.getVideosByInterests(id_user);
     }
+
 
     public ArrayList<Video> getVideoByChannelName(String query) {
         return videoDAO.getVideoByChannelName(query);

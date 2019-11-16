@@ -8,8 +8,6 @@ public class User {
     private String username;
     private String password;
     private LocalDate birthDate;
-    private int role_id;
-    private String right;
     private String img_user;
 
     public User(String email, String username, String password, LocalDate birthDate) {
@@ -33,22 +31,6 @@ public class User {
 
     public void setImg(String img) {
         this.img_user = img;
-    }
-
-    public String getRight() {
-        return right;
-    }
-
-    public void setRight(String right) {
-        this.right = right;
-    }
-
-    public int getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
     }
 
     public String getEmail() {

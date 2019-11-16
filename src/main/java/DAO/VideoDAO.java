@@ -25,7 +25,22 @@ public class VideoDAO {
             throw new IllegalArgumentException();
         }
     }
-
+    public  ArrayList<Video> get7VideoArr() {
+        ArrayList<Video> videos = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video;");
+            ResultSet resultSet = statement.executeQuery();
+            int i = 0;
+            while (resultSet.next() && i < 6) {
+                videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));
+                i++;
+            }
+            return videos;
+        } catch (SQLException e) {
+            System.out.println("Exception during getVideos");
+            throw new IllegalArgumentException();
+        }
+    }
     public  ArrayList<Video> getVideosByInterests(int id_user) {
         ArrayList<Video> videos = new ArrayList<>();
         try {
@@ -226,7 +241,7 @@ public class VideoDAO {
     public ArrayList<Video> getVideoByUserName(String query){
         ArrayList<Video> videos = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("        SELECT * FROM video LEFT JOIN users ON video.owner_id = users.id WHERE users.username like ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM video LEFT JOIN users ON video.owner_id = users.id WHERE users.username like ?");
             statement.setString(1, "%" + query + "%");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){

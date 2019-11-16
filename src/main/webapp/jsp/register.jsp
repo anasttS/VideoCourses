@@ -2,21 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-grid.css" rel="stylesheet">
-    <link href="css/bootstrap-reboot.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+    <%@ include file="/jsp/header.jsp" %>
     <title>Register</title>
 </head>
 <body style="background-image: url(/assets/img/bg5.jpg);">
@@ -83,40 +69,41 @@
     </div>
 </div>
 <br>
-<script>
-    function checkPassword() {
-        var password = document.getElementById('inputPassword').value;
-        var passwordLengthError = document.getElementById('passwordLengthError');
-        var passwordContainUpperCaseLetterError = document.getElementById('passwordContainUpperCaseLetterError');
-        var passwordContainNumberError = document.getElementById('passwordContainNumberError');
-        var confirmPassword = document.getElementById('confirmPassword');
-        var cond1 = false;
-        var cond2 = false;
-        var cond3 = false;
-        console.log(password);
-        if (password.length < 8) {
-            passwordLengthError.style.color = "red";
-            cond1 = false;
-        } else {
-            passwordLengthError.style.color = "green";
-            cond1 = true;
-        }
-        if (password.toString().search(/[A-Za-z]/) === -1) {
-            passwordContainUpperCaseLetterError.style.color = "red";
-            cond2 = false;
-        } else {
-            passwordContainUpperCaseLetterError.style.color = "green";
-            cond2 = true;
-        }
-        if (password.toString().search(/\d/) === -1) {
-            passwordContainNumberError.style.color = "red";
-            cond3 = false;
-        } else {
-            passwordContainNumberError.style.color = "green";
-            cond3 = true;
-        }
-    }
+<tag:checkPassword/>
+<%--<script>--%>
+    <%--function checkPassword() {--%>
+        <%--var password = document.getElementById('inputPassword').value;--%>
+        <%--var passwordLengthError = document.getElementById('passwordLengthError');--%>
+        <%--var passwordContainUpperCaseLetterError = document.getElementById('passwordContainUpperCaseLetterError');--%>
+        <%--var passwordContainNumberError = document.getElementById('passwordContainNumberError');--%>
+        <%--var confirmPassword = document.getElementById('confirmPassword');--%>
+        <%--var cond1 = false;--%>
+        <%--var cond2 = false;--%>
+        <%--var cond3 = false;--%>
+        <%--console.log(password);--%>
+        <%--if (password.length < 8) {--%>
+            <%--passwordLengthError.style.color = "red";--%>
+            <%--cond1 = false;--%>
+        <%--} else {--%>
+            <%--passwordLengthError.style.color = "green";--%>
+            <%--cond1 = true;--%>
+        <%--}--%>
+        <%--if (password.toString().search(/[A-Za-z]/) === -1) {--%>
+            <%--passwordContainUpperCaseLetterError.style.color = "red";--%>
+            <%--cond2 = false;--%>
+        <%--} else {--%>
+            <%--passwordContainUpperCaseLetterError.style.color = "green";--%>
+            <%--cond2 = true;--%>
+        <%--}--%>
+        <%--if (password.toString().search(/\d/) === -1) {--%>
+            <%--passwordContainNumberError.style.color = "red";--%>
+            <%--cond3 = false;--%>
+        <%--} else {--%>
+            <%--passwordContainNumberError.style.color = "green";--%>
+            <%--cond3 = true;--%>
+        <%--}--%>
+    <%--}--%>
 
-</script>
+<%--</script>--%>
 </body>
 </html>
