@@ -32,7 +32,6 @@ public class VideoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         forNavbar.authUser(req);
         if (req.getSession().getAttribute("current_user") != null) {
-            req.setAttribute("videos", videoService.get7Videos());
             req.setAttribute("video", videoService.findVideoById(Integer.parseInt(req.getParameter("id"))));
             req.setAttribute("comments", commentService.getComments(Integer.parseInt(req.getParameter("id"))));
             req.setAttribute("imgOfChannel", channelService.findImgOfChannelByVideoId(Integer.parseInt(req.getParameter("id"))));

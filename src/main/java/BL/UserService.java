@@ -120,7 +120,10 @@ public class UserService {
                     String interest = req.getParameter("Interest" + i);
                     if (interest != null){
                         interestDAO.addInterest(id_user, interest);
+                    } else {
+                        interestDAO.deleteInterest(id_user, interest);
                     }
+
                 }
 
                 resp.sendRedirect("/profile");

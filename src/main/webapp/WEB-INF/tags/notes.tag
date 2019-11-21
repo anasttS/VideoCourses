@@ -5,7 +5,7 @@
     <div class="card" style="width: 17rem;">
         <div class="card-body">
             <h5 class="card-title">${video.name}</h5>
-            <p class="card-text"> ${note.text}</p>
+            <p class="card-text"> ${note}</p>
             <button type="button" name="seeNote" class="btn btn-primary" data-toggle="modal"
                     data-target="#note${note.id}">
                 See note

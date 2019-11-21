@@ -21,6 +21,18 @@ public class InterestDAO {
         }
     }
 
+    public void deleteInterest(int id_user, String interest) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM interest_user_rel WHERE id_user = ? and id_interest = ? ");
+            statement.setInt(1, id_user);
+            statement.setString(2, interest);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Exception during deleteInterest");
+            throw new IllegalArgumentException();
+        }
+    }
+
     public ArrayList<Integer> findInterestsOfUser(int id_user){
         ArrayList<Integer> interests = new ArrayList<>();
         try {
