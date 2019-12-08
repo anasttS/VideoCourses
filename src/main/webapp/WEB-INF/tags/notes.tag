@@ -4,13 +4,13 @@
 <c:forEach var="note" items="${notes}">
     <div class="card" style="width: 17rem;">
         <div class="card-body">
-            <h5 class="card-title">${video.name}</h5>
-            <p class="card-text"> ${note}</p>
+            <%--<h5 class="card-title">${video.name}</h5>--%>
+            <p class="card-text"> ${note.text}</p>
             <button type="button" name="seeNote" class="btn btn-primary" data-toggle="modal"
                     data-target="#note${note.id}">
                 See note
             </button>
-            <a href="<c:url value="/video?id=${note.id_video}"/>" class="card-link">Video</a>
+            <a href="<c:url value="/video?id=${note.idVideo}"/>" class="card-link">Video</a>
         </div>
     </div>
     <div class="modal fade" id="note${note.id}" tabindex="-1" role="dialog"

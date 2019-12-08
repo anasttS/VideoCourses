@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 public class MediaAdd {
-    String UPLOADS = "media";
+    private String UPLOADS = "media";
 
     public String addMedia(HttpServletRequest request, String file) throws IOException, ServletException {
         Part part = request.getPart(file);

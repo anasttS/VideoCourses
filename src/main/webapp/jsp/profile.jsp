@@ -1,18 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<jsp:useBean id="username" class="pages.ProfileServlet" scope="session">--%>
-<%--<% UserService userService = new UserService(); %>--%>
-<%--<jsp:setProperty name="username" property="username"--%>
-<%--value=" <%= userService.getUsernameByEmail((String) request.getSession().getAttribute("current_user")) %>"/>--%>
-<%--<jsp:setProperty name="email" property="email"--%>
-<%--value=" <%= (String) request.getSession().getAttribute("current_user") %>"/>--%>
-<%--<jsp:setProperty name="birthDate" property="birthDate"--%>
-<%--value=" <%= userService.getbirthDateByEmail((String) request.getSession().getAttribute("current_user")) + ""  %>"/>--%>
-<%--<jsp:setProperty name="auth" property="email"--%>
-<%--value=" <%= (String) request.getSession().getAttribute("current_user") %>"/>--%>
-<%--</jsp:useBean>--%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,56 +40,37 @@
                             </div>
                             <hr>
                             <span><b>Choose you interests</b></span>
-                            <!-- Default inline 1-->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultInline1" name="Interest1"
-                                       value="1">
-                                <label class="custom-control-label" for="defaultInline1"><b>IT</b></label>
-                            </div>
+                            <c:forEach var="interest" items="${AllInterests}">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="${interest.getKey()}"
+                                               name="Interest${interest.getKey()}"
+                                        <c:forEach var="UserInterest" items="${interests}">
+                                        <c:if test="${UserInterest.getKey() == interest.getKey()}"> checked value="on" </c:if>
+                                        </c:forEach>
+                                               value="off">
+                                        <label class="custom-control-label"
+                                               for="${interest.getKey()}"><b>${interest.getValue()}</b></label>
+                                    </div>
+                            </c:forEach>
 
-                            <!-- Default inline 2-->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultInline2" name="Interest2"
-                                       value="2">
-                                <label class="custom-control-label" for="defaultInline2"><b>Math</b></label>
-                            </div>
 
-                            <!-- Default inline 3-->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultInline3" name="Interest3"
-                                       value="3">
-                                <label class="custom-control-label" for="defaultInline3"><b>Music</b></label>
-                            </div>
-
-                            <!-- Default inline 4-->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultInline4" name="Interest4"
-                                       value="4">
-                                <label class="custom-control-label" for="defaultInline4"><b>Business</b></label>
-                            </div>
-
-                            <!-- Default inline 5-->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultInline5" name="Interest5"
-                                       value="5">
-                                <label class="custom-control-label" for="defaultInline5"><b>English</b></label>
-                            </div>
-                            <br>
                             <button type="submit" class="btn btn-primary" name="save">Save Changes</button>
                             <button type="submit" class="btn btn-primary" name="createChannel">Create channel</button>
-                            <button type="submit" class="btn btn-primary" name="delete">Delete account</button>
-
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
-</div>
+<script>
+    function MyFunction() {
+        var check = document.getElementById(id);
+        check.checked = !check.checked;
+    }
+</script>
 <br>
 <br>
+
 </body>
 </html>

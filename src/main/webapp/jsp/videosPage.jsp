@@ -10,7 +10,7 @@
 <%@ include file="/jsp/navbar.jsp" %>
 
 
-<form action="<c:url value="/videos"/>" method="get" id="searchForm" class="channel-header">
+<form action="<c:url value="/video"/>" method="get" id="searchForm" class="channel-header">
     <div class="input-group-btn search-panel">
         <select name="search_param" id="search_param" class="btn btn-default dropdown-toggle"
                 data-toggle="dropdown" onfocus="">
@@ -37,8 +37,6 @@
             <tag:video/>
         </div>
     </div>
-
-</div>
 </div>
 <%--<%}%>--%>
 <br>

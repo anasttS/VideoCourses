@@ -11,9 +11,8 @@
                     <h5 class="card-title">${video.name}</h5>
                     <p class="card-text">${video.description}</p>
                     <form action="/video" method="get">
-                        <button type="submit" class="btn btn-primary" value="${video.id_video}" name="id">
-                            Watch
-                            video
+                        <button type="submit" class="btn btn-primary" value="${video.idVideo}" name="id">
+                            Watch video
                         </button>
                     </form>
                 </div>

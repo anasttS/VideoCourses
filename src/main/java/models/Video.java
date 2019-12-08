@@ -3,71 +3,70 @@ package models;
 import java.time.LocalDate;
 
 public class Video {
-    private int id_video;
+    private int idVideo;
     private String name;
     private String description;
-    private LocalDate upload_date;
-    private int owner_id;
-    private int channel_id;
+    private LocalDate uploadDate;
+    private int ownerId;
+    private int channelId;
     private int likes;
     private int views;
     private String url;
     private String img;
     private String username;
-    private int interest_id;
+    private int interestId;
 
-    public Video(int id, String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img) {
-        this.id_video = id;
+    public Video(int id, String name, String description, LocalDate uploadDate, int ownerId, int channelId, int likes, int views, String url, String img) {
+        this.idVideo = id;
         this.name = name;
         this.description = description;
-        this.upload_date = upload_date;
-        this.owner_id = owner_id;
-        this.channel_id = channel_id;
+        this.uploadDate = uploadDate;
+        this.ownerId = ownerId;
+        this.channelId = channelId;
         this.likes = likes;
         this.views = views;
         this.url = url;
         this.img = img;
     }
-    public Video(String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img, int interest_id) {
+    public Video(String name, String description, LocalDate uploadDate, int ownerId, int channelId, int likes, int views, String url, String img, int interestId) {
         this.name = name;
         this.description = description;
-        this.upload_date = upload_date;
-        this.owner_id = owner_id;
-        this.channel_id = channel_id;
+        this.uploadDate = uploadDate;
+        this.ownerId = ownerId;
+        this.channelId = channelId;
         this.likes = likes;
         this.views = views;
         this.url = url;
         this.img = img;
-        this.interest_id = interest_id;
+        this.interestId = interestId;
     }
-    public Video(int id, String name, String description, LocalDate upload_date, int owner_id, int channel_id, String url, String img) {
-        this.id_video = id;
+    public Video(int id, String name, String description, LocalDate uploadDate, int ownerId, int channelId, String url, String img) {
+        this.idVideo = id;
         this.name = name;
         this.description = description;
-        this.upload_date = upload_date;
-        this.owner_id = owner_id;
-        this.channel_id = channel_id;
+        this.uploadDate = uploadDate;
+        this.ownerId = ownerId;
+        this.channelId = channelId;
         this.url = url;
         this.img = img;
     }
 
-    public Video(String name, String description, LocalDate upload_date, int owner_id, int channel_id, int likes, int views, String url, String img) {
+    public Video(String name, String description, LocalDate uploadDate, int ownerId, int channelId, int likes, int views, String url, String img) {
         this.name = name;
         this.description = description;
-        this.upload_date = upload_date;
-        this.owner_id = owner_id;
-        this.channel_id = channel_id;
-
+        this.uploadDate = uploadDate;
+        this.ownerId = ownerId;
+        this.channelId = channelId;
         this.url = url;
         this.img = img;
     }
 
-    public int getInterest_id() {
-        return interest_id;
+    public int getinterestId() {
+        return interestId;
     }
 
-    public void setInterest_id(int interest_id) {
-        this.interest_id = interest_id;
+    public void setinterestId(int interestId) {
+        this.interestId = interestId;
     }
 
     public String getUsername() {
@@ -78,12 +77,12 @@ public class Video {
         this.username = username;
     }
 
-    public int getId_video() {
-        return id_video;
+    public int getidVideo() {
+        return idVideo;
     }
 
-    public void setId_video(int id_video) {
-        this.id_video = id_video;
+    public void setidVideo(int idVideo) {
+        this.idVideo = idVideo;
     }
 
     public String getName() {
@@ -102,28 +101,28 @@ public class Video {
         this.description = description;
     }
 
-    public LocalDate getUpload_date() {
-        return upload_date;
+    public LocalDate getuploadDate() {
+        return uploadDate;
     }
 
-    public void setUpload_date(LocalDate upload_date) {
-        this.upload_date = upload_date;
+    public void setuploadDate(LocalDate uploadDate) {
+        this.uploadDate = uploadDate;
     }
 
-    public int getOwner_id() {
-        return owner_id;
+    public int getownerId() {
+        return ownerId;
     }
 
-    public void setOwner_id(int owner_id) {
-        this.owner_id = owner_id;
+    public void setownerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public int getChannel_id() {
-        return channel_id;
+    public int getchannelId() {
+        return channelId;
     }
 
-    public void setChannel_id(int channel_id) {
-        this.channel_id = channel_id;
+    public void setchannelId(int channelId) {
+        this.channelId = channelId;
     }
 
     public String getImg() {

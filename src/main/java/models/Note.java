@@ -3,8 +3,8 @@ package models;
 public class Note {
     private int id;
     private String text;
-    private int id_user;
-    private int id_video;
+    private int idUser;
+    private int idVideo;
     private String videoName;
 
     public String getVideoName() {
@@ -15,17 +15,17 @@ public class Note {
         this.videoName = videoName;
     }
 
-    public Note(int id, String text, int id_user, int id_video) {
+    public Note(int id, String text, int idUser, int idVideo) {
         this.id = id;
         this.text = text;
-        this.id_user = id_user;
-        this.id_video = id_video;
+        this.idUser = idUser;
+        this.idVideo = idVideo;
     }
 
-    public Note(String text, int id_user, int id_video) {
+    public Note(String text, int idUser, int idVideo) {
         this.text = text;
-        this.id_user = id_user;
-        this.id_video = id_video;
+        this.idUser = idUser;
+        this.idVideo = idVideo;
     }
 
     public int getId() {
@@ -44,20 +44,20 @@ public class Note {
         this.text = text;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getidUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setidUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public int getId_video() {
-        return id_video;
+    public int getidVideo() {
+        return idVideo;
     }
 
-    public void setId_video(int id_video) {
-        this.id_video = id_video;
+    public void setidVideo(int idVideo) {
+        this.idVideo = idVideo;
     }
 
 }

@@ -37,6 +37,11 @@
                                name="password">
                     </div>
                     <div class="form-group">
+                        <input type="password" class="form-control" id="inputCheckPassword"
+                               placeholder="Repeat password"
+                               name="passwordRepeat">
+                    </div>
+                    <div class="form-group">
                         <input class="form-control" type="date" id="example-date-input" name="birthDate">
                     </div>
                     <div class="custom-file">
@@ -70,40 +75,5 @@
 </div>
 <br>
 <tag:checkPassword/>
-<%--<script>--%>
-    <%--function checkPassword() {--%>
-        <%--var password = document.getElementById('inputPassword').value;--%>
-        <%--var passwordLengthError = document.getElementById('passwordLengthError');--%>
-        <%--var passwordContainUpperCaseLetterError = document.getElementById('passwordContainUpperCaseLetterError');--%>
-        <%--var passwordContainNumberError = document.getElementById('passwordContainNumberError');--%>
-        <%--var confirmPassword = document.getElementById('confirmPassword');--%>
-        <%--var cond1 = false;--%>
-        <%--var cond2 = false;--%>
-        <%--var cond3 = false;--%>
-        <%--console.log(password);--%>
-        <%--if (password.length < 8) {--%>
-            <%--passwordLengthError.style.color = "red";--%>
-            <%--cond1 = false;--%>
-        <%--} else {--%>
-            <%--passwordLengthError.style.color = "green";--%>
-            <%--cond1 = true;--%>
-        <%--}--%>
-        <%--if (password.toString().search(/[A-Za-z]/) === -1) {--%>
-            <%--passwordContainUpperCaseLetterError.style.color = "red";--%>
-            <%--cond2 = false;--%>
-        <%--} else {--%>
-            <%--passwordContainUpperCaseLetterError.style.color = "green";--%>
-            <%--cond2 = true;--%>
-        <%--}--%>
-        <%--if (password.toString().search(/\d/) === -1) {--%>
-            <%--passwordContainNumberError.style.color = "red";--%>
-            <%--cond3 = false;--%>
-        <%--} else {--%>
-            <%--passwordContainNumberError.style.color = "green";--%>
-            <%--cond3 = true;--%>
-        <%--}--%>
-    <%--}--%>
-
-<%--</script>--%>
 </body>
 </html>

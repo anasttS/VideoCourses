@@ -1,6 +1,6 @@
 package UILogic;
 
-import BL.UserService;
+import services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 

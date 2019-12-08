@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 //check cookie
 public class UICookieLogic {
 
-    public void addCookie(HttpServletRequest req, HttpServletResponse resp, String email){
+    public void addCookie(HttpServletRequest req, HttpServletResponse resp, String email) {
         HttpSession session = req.getSession(true);
         if (req.getParameter("rememberMe") != null) {
             Cookie cLogin = new Cookie("cookemail", email);
@@ -18,7 +18,7 @@ public class UICookieLogic {
         session.setAttribute("current_user", email);
     }
 
-    public static   boolean checkCookie(HttpServletRequest req) {
+    public static boolean checkCookie(HttpServletRequest req) {
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("cookemail")) {
@@ -30,7 +30,7 @@ public class UICookieLogic {
     }
 
 
-    public  void deleteCookie(HttpServletRequest req, HttpServletResponse resp){
+    public void deleteCookie(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         session.setAttribute("current_user", null);
         session.invalidate();

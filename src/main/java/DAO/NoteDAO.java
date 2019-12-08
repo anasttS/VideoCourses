@@ -13,8 +13,8 @@ public class NoteDAO{
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO note (text, id_user, video_id) VALUES (?, ?, ?)");
             statement.setString(1, note.getText());
-            statement.setInt(2, note.getId_user());
-            statement.setInt(3, note.getId_video());
+            statement.setInt(2, note.getidUser());
+            statement.setInt(3, note.getidVideo());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception during saveNote");
@@ -62,10 +62,10 @@ public class NoteDAO{
         return null;
     }
 
-    public  ArrayList<Note> getNotesArrByUserID(int user_id) {
+    public  ArrayList<Note> getNotesArrByUserID(int userId) {
         ArrayList<Note> videos = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM note WHERE id_user = " + user_id);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM note WHERE id_user = " + userId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 videos.add(new Note(resultSet.getInt("id"),resultSet.getString("text"), resultSet.getInt("id_user"), resultSet.getInt("video_id")));

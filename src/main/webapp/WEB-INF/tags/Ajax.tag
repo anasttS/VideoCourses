@@ -15,7 +15,7 @@
                             $("#res").html("");
                             for (var i = 0; i < msg.videos.length; i++) {
                                 var o = msg.videos[i];
-                                var id_video = o.id_video;
+                                var id_video = o.idVideo;
                                 var img = o.img;
                                 var name = o.name;
                                 var description = o.description;

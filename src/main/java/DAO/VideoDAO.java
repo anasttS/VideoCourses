@@ -40,11 +40,11 @@ public class VideoDAO {
             throw new IllegalArgumentException();
         }
     }
-    public  ArrayList<Video> getVideosByInterests(int id_user) {
+    public  ArrayList<Video> getVideosByInterests(int idUser) {
         ArrayList<Video> videos = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM video left JOIN interest_user_rel ON video.interest_id = interest_user_rel.id_interest WHERE id_user = ?");
-            statement.setInt(1, id_user);
+            statement.setInt(1, idUser);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));
@@ -84,14 +84,14 @@ public class VideoDAO {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO videocourses.video (name, description, upload_date, owner_id, channel_id, likes, views, url, img, interest_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, video.getName());
             statement.setString(2, video.getDescription());
-            statement.setString(3, video.getUpload_date().toString());
-            statement.setInt(4, video.getOwner_id());
-            statement.setInt(5, video.getChannel_id());
+            statement.setString(3, video.getuploadDate().toString());
+            statement.setInt(4, video.getownerId());
+            statement.setInt(5, video.getchannelId());
             statement.setInt(6, video.getLikes());
             statement.setInt(7, video.getViews());
             statement.setString(8, video.getUrl());
             statement.setString(9, video.getImg());
-            statement.setInt(10, video.getInterest_id());
+            statement.setInt(10, video.getinterestId());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception during saveVideo");
@@ -189,11 +189,11 @@ public class VideoDAO {
         return null;
     }
 
-    public ArrayList<Video> getVideoArrByChannelId(int channel_id){
+    public ArrayList<Video> getVideoArrByChannelId(int channelId){
         ArrayList<Video> videos = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE channel_id = ?");
-            statement.setInt(1,channel_id);
+            statement.setInt(1,channelId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 videos.add(new Video(resultSet.getInt("id_video"), resultSet.getString("name"), resultSet.getString("description"), LocalDate.parse(resultSet.getString("upload_date")), resultSet.getInt("owner_id"), resultSet.getInt("channel_id"), resultSet.getInt("likes"), resultSet.getInt("views"), resultSet.getString("url"), resultSet.getString("img")));

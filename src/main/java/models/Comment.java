@@ -3,23 +3,15 @@ package models;
 import java.sql.Date;
 
 public class Comment{
-    int id;
-    int userId;
-    int mediaId;
-    Date date;
-    String text;
-    String userName;
-    String img;
+    private int id;
+    private int userId;
+    private int mediaId;
+    private Date date;
+    private String text;
+    private String userName;
+    private String img;
 
     public Comment(int userId, int mediaId, Date date, String text) {
-        this.userId = userId;
-        this.mediaId = mediaId;
-        this.date = date;
-        this.text = text;
-    }
-
-    public Comment(int id, int userId, int mediaId, Date date, String text) {
-        this.id = id;
         this.userId = userId;
         this.mediaId = mediaId;
         this.date = date;

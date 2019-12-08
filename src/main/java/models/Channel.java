@@ -1,13 +1,13 @@
 package models;
 
 public class Channel {
-    private int owner_id;
+    private int ownerId;
     private String name;
     private String img;
 
 
-    public Channel(int owner_id, String name, String img) {
-        this.owner_id = owner_id;
+    public Channel(int ownerId, String name, String img) {
+        this.ownerId = ownerId;
         this.name = name;
         this.img = img;
     }
@@ -20,12 +20,12 @@ public class Channel {
         this.img = img;
     }
 
-    public int getOwner_id() {
-        return owner_id;
+    public int getownerId() {
+        return ownerId;
     }
 
-    public void setOwner_id(int owner_id) {
-        this.owner_id = owner_id;
+    public void setownerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getName() {

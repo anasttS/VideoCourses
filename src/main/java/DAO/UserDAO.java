@@ -97,16 +97,16 @@ public class UserDAO {
         }
     }
 
-    public void delete(int id) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = " + id);
-             statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Exception during delete User");
-            throw new IllegalArgumentException();
-        }
-
-    }
+//    public void delete(int id) {
+//        try {
+//            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = " + id);
+//             statement.executeUpdate();
+//        } catch (SQLException e) {
+//            System.out.println("Exception during delete User");
+//            throw new IllegalArgumentException();
+//        }
+//
+//    }
 
     public boolean userIsExist(String email, String password) {
         try {
@@ -150,10 +150,10 @@ public class UserDAO {
         }
     }
 
-    public void createChannel(int channel_id, String email) {
+    public void createChannel(int channelId, String email) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE users SET own_channel = ?  WHERE email = ?");
-            statement.setInt(1, channel_id);
+            statement.setInt(1, channelId);
             statement.setString(2, email);
             statement.executeUpdate();
         } catch (SQLException e) {

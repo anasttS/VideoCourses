@@ -14,8 +14,7 @@ public class CommentDAO  {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM videocourses.comment LEFT JOIN videocourses.users ON comment.user_id = users.id WHERE mediaId = ?");
             statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            return resultSet;
+            return statement.executeQuery();
         } catch (SQLException e) {
             System.out.println("Exception during get comments");
             throw new IllegalArgumentException();

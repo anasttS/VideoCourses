@@ -1,6 +1,6 @@
 package beans;
 
-import BL.VideoService;
+import services.VideoService;
 import models.Video;
 
 import java.util.ArrayList;

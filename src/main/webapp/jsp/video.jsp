@@ -26,11 +26,11 @@
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <span>${video.views} views | ${video.upload_date}</span>
+                        <span>${video.views} views | ${video.uploadDate}</span>
                     </div>
                     <div class="col-md-6 d-flex flex-row-reverse align-items-center">
                         <form method="post" action="/video">
-                            <input type="hidden" name="id" value="${video.id_video}">
+                            <input type="hidden" name="id" value="${video.idVideo}">
                             <button type="submit" class="btn btn-primary btn-sm" name="like">Like</button>
                         </form>
                         <span class="likes-count">${video.likes} Likes</span>
@@ -59,8 +59,8 @@
                     <form action="/video" method="post" class="d-flex d-flex">
                         <input type="text" name="text" class="form-control" placeholder="Write a comment"
                                style="margin-right: 10px;">
-                        <input type="hidden" name="id" value="${video.id_video}">
-                        <button type="submit" class="btn btn-primary" name="send" value="${video.id_video}">Send
+                        <input type="hidden" name="id" value="${video.idVideo}">
+                        <button type="submit" class="btn btn-primary" name="send" value="${video.idVideo}">Send
                         </button>
                     </form>
                 </div>
@@ -77,15 +77,14 @@
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
             </div>
             <div class="col-4" style="padding-left: 30px;">
-                <form action="<c:url value="/video"/>" method="post">
+                <form action="<c:url value="/video?id=${video.idVideo}"/>" method="post">
                     <div class="form-group"><textarea class="form-control"
                                                       style="width: 100%;height: 200px;margin-right: 20px;"
                                                       name="noteText"></textarea>
-                        <input type="hidden" name="id" value="${video.id_video}">
+                        <input type="hidden" name="id" value="${video.idVideo}">
                         <button name="save" class="btn btn-primary" type="submit" style="margin: 0px;margin-top: 20px;">
                             Save note
                         </button>
@@ -100,9 +99,6 @@
 
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 </body>
 

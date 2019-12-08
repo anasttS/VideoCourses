@@ -8,7 +8,7 @@ public class User {
     private String username;
     private String password;
     private LocalDate birthDate;
-    private String img_user;
+    private String imgUser;
 
     public User(String email, String username, String password, LocalDate birthDate) {
         this.email = email;
@@ -22,15 +22,15 @@ public class User {
         this.username = username;
         this.password = password;
         this.birthDate = birthDate;
-        this.img_user = img;
+        this.imgUser = img;
     }
 
     public String getImg() {
-        return img_user;
+        return imgUser;
     }
 
     public void setImg(String img) {
-        this.img_user = img;
+        this.imgUser = img;
     }
 
     public String getEmail() {
